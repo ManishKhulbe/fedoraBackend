@@ -1,0 +1,12 @@
+/node_modules
+/app.log
+package-lock.json
+npm-debug.log*
+/.env
+/lib/config/env/remoteserver.js
+/lib/config/env/localhost.js
+/uploads/
+/lib/config/env/cluster.js
+/.idea/
+/nbproject/
+/download/

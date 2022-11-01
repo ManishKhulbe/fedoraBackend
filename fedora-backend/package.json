@@ -1,0 +1,62 @@
+{
+  "name": "fedora-backend",
+  "version": "1.0.0",
+  "main": "demo_node",
+  "private": true,
+  "author": "rahul singh",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "description": "Nodejs project structure using expressjs,socket.io,mongoose",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "@socket.io/admin-ui": "^0.4.0",
+    "async": "^3.2.4",
+    "asyncawait": "^3.0.0",
+    "aws-sdk": "^2.1203.0",
+    "basic-auth": "^2.0.1",
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.7.2",
+    "bluebird-extra": "^2.0.0",
+    "body-parser": "^1.20.0",
+    "bunyan": "^1.8.15",
+    "bunyan-debug-stream": "^3.0.2",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "fcm-node": "^1.6.1",
+    "fs": "0.0.2",
+    "ip": "^1.1.8",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.4",
+    "mongodb": "^4.9.0",
+    "mongodb-cron": "^1.8.0",
+    "mongoose": "^6.5.3",
+    "multer": "^1.4.2",
+    "node-async-loop": "^1.2.2",
+    "node-cron": "^3.0.2",
+    "node-geocoder": "^4.2.0",
+    "node-rest-client": "^3.1.1",
+    "nodemailer": "^6.7.8",
+    "path": "^0.12.7",
+    "randomstring": "^1.2.2",
+    "redis": "^4.3.0",
+    "redis-sessions": "^3.0.0",
+    "request": "^2.88.2",
+    "request-ip": "^3.3.0",
+    "request-promise": "^4.2.5",
+    "response-time": "^2.3.2",
+    "sha256": "^0.2.0",
+    "smartcrop": "^2.0.5",
+    "socket.io": "^4.5.1",
+    "vcards-js": "^2.10.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  }
+}
