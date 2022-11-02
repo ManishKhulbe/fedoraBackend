@@ -7,7 +7,7 @@ Promise.promisifyAll(redis.RedisClient.prototype),
 var client;
 _ = require('lodash'),
         config = require('../config'),
-        logger = require('../logger');
+        logger = require('../logger/index');
 
 var init = function () {
     client = redis.createClient(config.cfg.redis.port, config.cfg.redis.server);
@@ -17,16 +17,37 @@ var init = function () {
 }
 
 exports.setValue = function (key, value) {
-    return client.setAsync(key, value).then(function (response) {
+    let val = JSON.stringify(value)
+    return client.setAsync(key, val , 'EX' , 1*60 ).then(function (response) {
         if (response) {
-            logger.info({'value': response}, '_redisSetValue');
+            // logger.info({'value': response}, '_redisSetValue');
+            return response;
+        }
+    }).catch(function (error) {
+        return error;
+    });
+
+}
+
+exports.IsExists = async function (key) {
+    try {
+        let res = client.exists(key)
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+//check if key exists
+exports.exists = function (key) {
+    return client.existsAsync(key).then(function (response) {
+        if (response) {
             return response;
         }
     }).catch(function (error) {
         return error;
     });
 }
-
 exports.getValue = function (key) {
     return client.getAsync(key).then(function (response) {
         return response;

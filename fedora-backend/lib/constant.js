@@ -84,6 +84,9 @@ const MESSAGES = {
         INCORRECT_PASS          : "Invalid email or passoword",
         USER_NOT_REGISTERED     : "User has been not registered",
         OLD_PASSWORD_MISMATCH:	"Old password is not correct.",
+		INVALID_MOBILE_NO:	"Please fill valid mobile number.",
+		MOBILENO_ALREADY_EXIST : "Your Entered Mobile number is already exists",
+		OTP_EXPIRED : 'OTP expired'
 }
 
 const EMAIL= {

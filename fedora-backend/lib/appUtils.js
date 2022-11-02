@@ -107,7 +107,7 @@ function getRandomOtp(){
     //Generate Random Number
     return randomstring.generate({
         charset: 'numeric',
-        length : 6
+        length : 4
     });
 }
 
@@ -115,7 +115,6 @@ function isValidPhone(phone , verifyCountryCode ){
     var reExp = verifyCountryCode ? /^\+\d{6,16}$/ : /^\d{6,16}$/;
     return reExp.test(phone)
 }
-
 
 
 //========================== Export Module Start ===========================

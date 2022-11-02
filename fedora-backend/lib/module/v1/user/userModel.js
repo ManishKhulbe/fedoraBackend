@@ -8,96 +8,28 @@ var User;
 var UserSchema = new Schema({
     name: {
         type: String,
+        default:''
     },
-    email: {
+    mobileNo: {
         type: String,
         index: true,
     },
-    password: {
+    email :{
+        type:String
+    },
+    mPIN: {
+        type: String,
+        default:''
+    },
+    membershipId :{
         type: String
+    },
+    accountNumber :{
+        type: Number
     },
     userType:{
         type: Number,
-        default: 1, //1-user, 2-company,3-admin
-    },
-    gender: {
-        type: Number,
-        default: 0, //0 Undefined, 1 Male, 2 Female, 3 Others
-        min :0,
-        max:3
-    },
-    dob: {
-        type: String,
-    },
-    designation: {
-        type: String,
-    },
-    companyName: {
-        type: String,
-    },
-    employeeId: {
-        type: String,
-    },
-    aboutUs: {
-        type: String,
-    },
-    profileImage: {
-        type: String,
-    },
-    profileImageData:{},
-    workEmail: {
-        type: String,
-    },
-    phoneNo: {
-        type: String,
-    },
-    whatsApp: {
-        type: String,
-    },
-    skype:{
-        type: String,
-    },
-    website: {
-        type: String,
-    },
-    instagram: {
-        type: String,
-    },
-    facebook: {
-        type: String,
-    },
-    linkedin: {
-        type: String,
-    },
-    twitter: {
-        type: String,
-    },
-    googleMap:{
-        type: String,
-    },
-    hangouts:{
-        type: String,
-    },
-    youtube:{
-        type: String,
-    },
-    snapchat:{
-        type: String,
-    },
-    tiktok:{
-        type: String,
-    },
-    pinterest:{
-        type: String,
-    },
-    github:{
-        type: String,
-    },
-    npm:{
-        type: String,
-    },
-    stackoverflow:{
-        type: String,
+        default: 1, //1-user, 2-company , 3-admin
     },
     deviceToken: {
         type: String
@@ -125,7 +57,91 @@ var UserSchema = new Schema({
     },
     updated: {
         type: Date,
+    },
+    profileImage :{
+        type: String,
+        default:''
     }
+    // gender: {
+    //     type: Number,
+    //     default: 0, //0 Undefined, 1 Male, 2 Female, 3 Others
+    //     min :0,
+    //     max:3
+    // },
+    // dob: {
+    //     type: String,
+    // },
+    // designation: {
+    //     type: String,
+    // },
+    // companyName: {
+    //     type: String,
+    // },
+    // employeeId: {
+    //     type: String,
+    // },
+    // aboutUs: {
+    //     type: String,
+    // },
+    // profileImage: {
+    //     type: String,
+    // },
+    // profileImageData:{},
+    // workEmail: {
+    //     type: String,
+    // },
+    // phoneNo: {
+    //     type: String,
+    // },
+    // whatsApp: {
+    //     type: String,
+    // },
+    // skype:{
+    //     type: String,
+    // },
+    // website: {
+    //     type: String,
+    // },
+    // instagram: {
+    //     type: String,
+    // },
+    // facebook: {
+    //     type: String,
+    // },
+    // linkedin: {
+    //     type: String,
+    // },
+    // twitter: {
+    //     type: String,
+    // },
+    // googleMap:{
+    //     type: String,
+    // },
+    // hangouts:{
+    //     type: String,
+    // },
+    // youtube:{
+    //     type: String,
+    // },
+    // snapchat:{
+    //     type: String,
+    // },
+    // tiktok:{
+    //     type: String,
+    // },
+    // pinterest:{
+    //     type: String,
+    // },
+    // github:{
+    //     type: String,
+    // },
+    // npm:{
+    //     type: String,
+    // },
+    // stackoverflow:{
+        // type: String,
+    // },
+    
 },
 );
 

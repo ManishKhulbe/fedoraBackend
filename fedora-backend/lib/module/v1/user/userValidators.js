@@ -174,6 +174,64 @@ var validateStatusChange = function (req, res, next) {
     next();
 };
 
+let validateRegistration = function (req, res, next) {
+    let {accountNumber, membershipId ,name ,mobileNo ,acceptedTermsAndCondition , email} = req.body;
+    var errors = [];
+    if(_.isEmpty(accountNumber)){
+        errors.push({ fieldName: "accountNumber", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "accountNumber") });
+    }
+    if(_.isEmpty(membershipId)){
+        errors.push({ fieldName: "membershipId", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "membershipId") });
+    }
+    if(_.isEmpty(name)){
+        errors.push({ fieldName: "name", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "name") });
+    }
+    if(_.isEmpty(mobileNo)){
+        errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "mobileNo") });
+    }
+    if(_.isEmpty(acceptedTermsAndCondition)){
+        errors.push({ fieldName: "acceptedTermsAndCondition", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "acceptedTermsAndCondition") });
+    }
+    //check mobileno length should be 10
+    if(mobileNo.length != 10){
+        errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.INVALID_MOBILE_NO });
+
+    }
+    //check email is valid or not
+    if(!appUtils.isValidEmail(email)){
+        errors.push({ fieldName: "email", message: constant.MESSAGES.INVALID_EMAIL });
+    }
+    if (errors && errors.length > 0) {
+        validationError(errors, next);
+    }
+    next();
+
+}
+
+let validateOtp = function (req, res, next) {
+    let {otp} = req.body;
+    var errors = [];
+    if(_.isEmpty(otp)){
+        errors.push({ fieldName: "otp", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "otp") });
+    } 
+    if (errors && errors.length > 0) {
+        validationError(errors, next);
+    }
+    next();
+}
+
+let validateMpin = function (req, res, next) {
+    let {mPin} = req.body;
+    var errors = [];
+    if(_.isEmpty(mPin)){
+        errors.push({ fieldName: "mPin", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "mPin") });
+    }
+    if (errors && errors.length > 0) {
+        validationError(errors, next);
+    }
+    next();
+}
+
 var validationError = function (errors, next) {
     if (errors && errors.length > 0) {
         return next(exceptions.getCustomErrorException(constant.MESSAGES.validationError, errors))
@@ -190,6 +248,9 @@ module.exports = {
     validateUserInfo,
     validateChangePassword,
     validateUserList,
-    validateStatusChange
+    validateStatusChange,
+    validateRegistration,
+    validateOtp,
+    validateMpin
 };
 //========================== Export module end ==================================

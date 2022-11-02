@@ -78,6 +78,11 @@ var cfg = {
         },
         
         smtp:{
+                auth:{
+user:'manishkhulbe123@gmail.com',
+pass:'khulbe9456694701'
+
+                },
             fromEmail:process.env.SENDGRID_FROM_EMAIL,
             errorLogEmail:process.env.ERROR_LOG_EMAIL,
         }

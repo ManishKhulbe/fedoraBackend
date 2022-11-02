@@ -36,11 +36,18 @@ function createAdmin(params) {
 function createUser(params) {
     return userDao.createUser(params)
 }
-
+function register(params){
+    return userDao.register(params)
+}
+function createMpin(params){
+    return userDao.createMpin(params)
+}
 function isEmailExist(params) {
     return userDao.isEmailExist(params)
 }
-
+function isMobileNumberExists(params){
+    return userDao.isMobileNumberExists(params)
+}
 function updateUser(params) {
     let update={};
     let query={_id:params.user.userId};
@@ -127,6 +134,7 @@ function count(params) {
 //========================== Export Module Start ==============================
 
 module.exports = {
+    isMobileNumberExists,
     createAdmin,
     login,
     createUser,
@@ -136,7 +144,9 @@ module.exports = {
     getByKey,
     update,
     emailCheck,
-    count
+    count,
+    register,
+    createMpin
 };
 
 //========================== Export Module End ===============================

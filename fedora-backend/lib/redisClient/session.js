@@ -26,11 +26,12 @@ var init = function () {
 
 //create token
 exports.create = function (value) {
+    console.log(value ,">><MN")
     return new Promise(function(resolve, reject){
         rs.create({
             app: rsapp,
             id: value.userId,
-            ip: value.ip,
+            ip: value.IP,
             ttl: value.expTime,
             d: value.userObj
         },

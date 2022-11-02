@@ -21,11 +21,25 @@ function createUser(params) {
     var user = new userModel(params);
     return userDao.save(user);
 }
+function register(params){
+    var user = new userModel(params);
+    console.log(user)
+    return userDao.save(user);
+}
 
 function updateUser(query,update) {
     update.updated = new Date();   
     let option = {};
     option.new = true;
+    return userDao.findOneAndUpdate(query, update, option);
+}
+function createMpin(param){
+    let query ={}
+    let option = {};
+    let update = {};
+    option.new = true;
+    query._id= param.userId
+    update.mPIN=  param.mPin
     return userDao.findOneAndUpdate(query, update, option);
 }
 
@@ -60,6 +74,22 @@ function isEmailExist(params) {
     }else{
         return _PromiseFunction;
     }
+}
+
+function isMobileNumberExists(params){
+    let query = {};
+    if(params.mobileNo){
+        query.mobileNo = params.mobileNo;
+    }
+        return userDao.findOne(query)
+        .then(function (result) {
+            if (result) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
 }
 
 function emailCheck(params) {
@@ -170,7 +200,10 @@ module.exports = {
     userList,
     update,
     emailCheck,
-    count
+    count,
+    isMobileNumberExists,
+    register,
+    createMpin
 };
 
 //========================== Export Module End ===============================

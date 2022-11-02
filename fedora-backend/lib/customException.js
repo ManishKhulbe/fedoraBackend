@@ -32,6 +32,12 @@ module.exports = {
     incorrectPass: function () {
         return new Exception(7, constants.MESSAGES.INCORRECT_PASS)
     },
+    alreadyRegistered: function () {
+        return new Exception(8, constants.MESSAGES.MOBILENO_ALREADY_EXIST)
+    },
+    otpExpired: function () {
+        return new Exception(9, constants.MESSAGES.OTP_EXPIRED)
+    },
 };
 
 //========================== Export Module   End ===========================
