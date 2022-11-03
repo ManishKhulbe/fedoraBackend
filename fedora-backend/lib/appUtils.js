@@ -7,6 +7,9 @@
 var sha256 = require('sha256');
 var bcrypt = require('bcrypt');
 var randomstring = require("randomstring");
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
 //========================== Load Modules End =============================
 
 //========================== Export Module Start ===========================
@@ -111,9 +114,31 @@ function getRandomOtp(){
     });
 }
 
+function getRandomOtpSix(){
+    //Generate Random Number
+    return randomstring.generate({
+        charset: 'numeric',
+        length : 6
+    });
+}
+
 function isValidPhone(phone , verifyCountryCode ){
     var reExp = verifyCountryCode ? /^\+\d{6,16}$/ : /^\d{6,16}$/;
     return reExp.test(phone)
+}
+
+async function  sendBySms(phone, otp) {
+    console.log(phone, otp)
+    return await client.messages.create({
+        to: `+91${phone}`,
+        from: process.env.TWILIO_TWILIO_NUMBER,
+        body: `Your  OTP is ${otp} , OTP is valid for only 1 min`,
+    }).then((data)=>{
+        return true
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 }
 
 
@@ -131,6 +156,8 @@ module.exports = {
     stringToBoolean,
     getRandomOtp,
     isValidPhone,
+    getRandomOtpSix,
+    sendBySms
 };
 
 //========================== Export Module End===========================

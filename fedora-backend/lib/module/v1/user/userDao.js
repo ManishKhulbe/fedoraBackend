@@ -21,10 +21,16 @@ function createUser(params) {
     var user = new userModel(params);
     return userDao.save(user);
 }
-function register(params){
+async function register(params){
     var user = new userModel(params);
     console.log(user)
-    return userDao.save(user);
+    return userDao.save(user).then(function (result) {
+        if (result) {
+          return result;
+        } else {
+          return false;
+        }
+      });
 }
 
 function updateUser(query,update) {
@@ -32,6 +38,18 @@ function updateUser(query,update) {
     let option = {};
     option.new = true;
     return userDao.findOneAndUpdate(query, update, option);
+}
+function isUserIdExist(params){
+    let query = {};
+    query._id = params.userId;
+    return userDao.findOne(query).then(function (result) {
+      if (result) {
+        return result;
+      } else {
+        return false;
+      }
+    });
+
 }
 function createMpin(param){
     let query ={}
@@ -91,7 +109,21 @@ function isMobileNumberExists(params){
             }
         })
 }
-
+function isMobileNumberExist(params){
+    let query = {};
+    if(params.mobileNo){
+        query.mobileNo = params.mobileNo;
+    }
+        return userDao.findOne(query)
+        .then(function (result) {
+            if (result) {
+                return result;
+            }
+            else {
+                return false;
+            }
+        })
+}
 function emailCheck(params) {
     let query = {};
     if(params.userId){
@@ -203,7 +235,9 @@ module.exports = {
     count,
     isMobileNumberExists,
     register,
-    createMpin
+    createMpin,
+    isUserIdExist,
+    isMobileNumberExist
 };
 
 //========================== Export Module End ===============================

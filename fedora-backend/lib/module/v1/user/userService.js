@@ -8,9 +8,10 @@ const userDao = require('./userDao');
 //========================== Load Modules End ==============================================
 
 function login(params) {
+console.log(params)
     let query = {};
-    query.email = params.email;
-    query.password = appUtils.createHashSHA256(params.password);
+    query._id = params.userId;
+    query.mPIN = appUtils.createHashSHA256(params.mPin);
     return userDao.getByKey(query)
     .then(function (result) {
         if (result) {
@@ -47,6 +48,12 @@ function isEmailExist(params) {
 }
 function isMobileNumberExists(params){
     return userDao.isMobileNumberExists(params)
+}
+function isMobileNumberExist(params){
+    return userDao.isMobileNumberExist(params)
+}
+function isUserIdExist(params){
+    return userDao.isUserIdExist(params)
 }
 function updateUser(params) {
     let update={};
@@ -146,7 +153,9 @@ module.exports = {
     emailCheck,
     count,
     register,
-    createMpin
+    createMpin,
+    isUserIdExist,
+    isMobileNumberExist
 };
 
 //========================== Export Module End ===============================

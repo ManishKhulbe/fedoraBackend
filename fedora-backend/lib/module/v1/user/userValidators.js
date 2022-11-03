@@ -177,6 +177,10 @@ var validateStatusChange = function (req, res, next) {
 let validateRegistration = function (req, res, next) {
     let {accountNumber, membershipId ,name ,mobileNo ,acceptedTermsAndCondition , email} = req.body;
     var errors = [];
+    let isnum = /^\d+$/.test(accountNumber);
+    if(!isnum){
+        errors.push({ fieldName: "accountNumber", message: constant.MESSAGES.KEY_MUST_BE_NUMBER.replace("{{key}}", "accountNumber") });
+    }
     if(_.isEmpty(accountNumber)){
         errors.push({ fieldName: "accountNumber", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "accountNumber") });
     }
@@ -232,6 +236,38 @@ let validateMpin = function (req, res, next) {
     next();
 }
 
+let validateForgetPin = function (req, res, next) {
+    let {mobileNo} = req.body;
+    var errors = [];
+    if(mobileNo.length != 10){
+        errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.INVALID_MOBILE_NO });
+    }
+    let isnum = /^\d+$/.test(mobileNo);
+    if(!isnum){
+        errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.KEY_MUST_BE_NUMBER.replace("{{key}}", "mobileNo") });
+    }
+    if(_.isEmpty(mobileNo)){
+        errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "mobileNo") });
+    }
+    if (errors && errors.length > 0) {
+        validationError(errors, next);
+    }
+    next();
+}
+
+
+let validateForgetPinOtp = function (req, res, next) {
+    let {otp} = req.body;
+    var errors = [];
+    if(!otp){
+        errors.push({ fieldName: "otp", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "otp") });
+    }
+    if (errors && errors.length > 0) {
+        validationError(errors, next);
+    }
+    next();
+}
+
 var validationError = function (errors, next) {
     if (errors && errors.length > 0) {
         return next(exceptions.getCustomErrorException(constant.MESSAGES.validationError, errors))
@@ -251,6 +287,8 @@ module.exports = {
     validateStatusChange,
     validateRegistration,
     validateOtp,
-    validateMpin
+    validateMpin,
+    validateForgetPin,
+    validateForgetPinOtp
 };
 //========================== Export module end ==================================

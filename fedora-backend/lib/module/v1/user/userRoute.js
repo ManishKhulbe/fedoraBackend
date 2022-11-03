@@ -84,19 +84,48 @@ router
         resHndlr.sendError(res, err, req);
       });
   });
-// router.route("/login")
-//     .post([validators.validateLogin], function (req, res) {
-//         let {email, password } = req.body;
-//         let clientIp = requestIp.getClientIp(req);
-//         userFacade.userLogin({ email, password,clientIp })
-//         .then(function (result) {
-//             resHndlr.sendSuccess(res, result,req);
-//         })
-//         .catch(function (err) {
-//             resHndlr.sendError(res, err,req);
-//         })
-//     });
 
+
+router.route("/login")
+    .post([middleware.authenticate.autntctTkn , validators.validateMpin], function (req, res) {
+        let {mPin} = req.body;
+        let {userId } = req.user;
+        //get ip from request
+        let clientIp = requestIp.getClientIp(req);
+        userFacade.userLogin({ mPin, userId,clientIp })
+        .then(function (result) {
+            resHndlr.sendSuccess(res, result,req);
+        })
+        .catch(function (err) {
+            resHndlr.sendError(res, err,req);
+        })
+    });
+
+    router.route('/forgetPin')
+    .post([validators.validateForgetPin], function (req, res) {
+      let {mobileNo} = req.body;
+      userFacade.forgetPin({ mobileNo })
+      .then(function (result) {
+          resHndlr.sendSuccess(res, result,req);
+      })
+      .catch(function (err) {
+          resHndlr.sendError(res, err,req);
+      })
+
+    })
+
+    router.route('/validateForgetPinOtp')
+    .post([validators.validateForgetPinOtp], function (req, res) {
+      let {otp} = req.body;
+      userFacade.validateForgetPinOtp({ otp })
+      .then(function (result) {
+          resHndlr.sendSuccess(res, result,req);
+      })
+      .catch(function (err) {
+          resHndlr.sendError(res, err,req);
+      })
+
+    })
 // router.route("/edit")
 //     .post([middleware.authenticate.autntctTkn,middleware.authenticateRole.userRole(constant.ACCOUNT_ROLE.ADMIN),middleware.multer.single('profileImage'),middleware.mediaUpload.uploadSingleMediaToS3('profile')], function (req, res) {
 //         let profileImage;

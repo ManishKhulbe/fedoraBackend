@@ -18,13 +18,13 @@ var init = function () {
 
 exports.setValue = function (key, value) {
     let val = JSON.stringify(value)
-    return client.setAsync(key, val , 'EX' , 1*60 ).then(function (response) {
+    return client.setAsync(key, val , 'EX' , 1*60*60 ).then(function (response) {
         if (response) {
             // logger.info({'value': response}, '_redisSetValue');
-            return response;
+            return true;
         }
     }).catch(function (error) {
-        return error;
+        return false;
     });
 
 }

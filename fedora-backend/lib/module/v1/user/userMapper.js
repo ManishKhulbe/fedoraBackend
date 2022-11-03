@@ -6,13 +6,19 @@ const contstants = require("../../../constant");
 const config = require("../../../config");
 
 function loginMapping(params) {
-  let userInfo = params.user;
-  delete userInfo.password;
+ 
   var respObj = {
     message: "Successfully Login",
-    accessToken: params.accessToken,
-    mediaPath: config.cfg.s3.mediaPath,
-    result: userInfo,
+    UserDetails: {
+      userId: params._id,
+      name: params.name,
+      mobileNo: params.mobileNo,
+      email: params.email,
+      membershipId: params.membershipId,
+      accountNumber: params.accountNumber,
+      status: params.status,
+      created: params.created,
+    },
   };
   return respObj;
 }
@@ -61,6 +67,20 @@ function mPinCreatedMapping(param){
 
   return respObj;
 }
+
+function otpMatchSuccessfullyMapping(params , redisSession){
+  var respObj = {
+    message: "OTP match successfully",
+    accessToken:redisSession,
+    UserDetails :{
+      mobileNo : params.params.mobileNo,
+      userId : params.userId
+    }
+  };
+
+  return respObj;
+}
+
 function createMapping(params) {
   let userInfo = params.user;
   if (userInfo.password) {
@@ -234,5 +254,6 @@ module.exports = {
   userListMapper,
   statusChangeMapper,
   otpSentMapping,
-  mPinCreatedMapping
+  mPinCreatedMapping,
+  otpMatchSuccessfullyMapping
 };

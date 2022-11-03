@@ -30,7 +30,7 @@ module.exports = {
         return new Exception(6, constants.MESSAGES.USER_NOT_REGISTERED)
     },
     incorrectPass: function () {
-        return new Exception(7, constants.MESSAGES.INCORRECT_PASS)
+        return new Exception(7, constants.MESSAGES.INCORRECT_MPIN)
     },
     alreadyRegistered: function () {
         return new Exception(8, constants.MESSAGES.MOBILENO_ALREADY_EXIST)
@@ -38,6 +38,9 @@ module.exports = {
     otpExpired: function () {
         return new Exception(9, constants.MESSAGES.OTP_EXPIRED)
     },
+    notRegisteredMobileNo: function(){
+        return new Exception(10, constants.MESSAGES.MOBILENO_NOT_REGISTERED)
+    }
 };
 
 //========================== Export Module   End ===========================
