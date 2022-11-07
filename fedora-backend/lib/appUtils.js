@@ -7,6 +7,7 @@
 var sha256 = require('sha256');
 var bcrypt = require('bcrypt');
 var randomstring = require("randomstring");
+const mongoose = require("mongoose");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
@@ -52,6 +53,9 @@ function createHashSHA256(pass) {
     return sha256(pass)
 }
 
+function objectIdConvert(pass) {
+    return mongoose.Types.ObjectId(pass)
+}
 /**
  * returns random number for password
  * @returns {string}
@@ -157,7 +161,8 @@ module.exports = {
     getRandomOtp,
     isValidPhone,
     getRandomOtpSix,
-    sendBySms
+    sendBySms,
+    objectIdConvert
 };
 
 //========================== Export Module End===========================

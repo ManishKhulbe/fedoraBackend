@@ -30,6 +30,22 @@
         "description": "Find out more about our store",
         "url": ""
       }
+    },
+    {
+      "name": "Account",
+      "description": "Operations about Accounts",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Customer Account",
+      "description": "Operations about Customer Account",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -284,7 +300,204 @@
            }
           ]
         }
-     }
+     },
+     "/Account/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": "accountType 1 - SBA ,2 - RDA ,3 - FDA, 4 - LAA, 5 - ODA",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "accountInterestRate",
+            "in": "formData",
+            "description": "accountInterestRate",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "accountOverdraft",
+            "in": "formData",
+            "description": "accountOverdraft",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "userId",
+            "in": "formData",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": "accountId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "search",
+            "in": "query",
+            "description": "search by customer name  ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchYear",
+            "in": "query",
+            "description": "enter a valid year",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchMonth",
+            "in": "query",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "startDate format : YYYY-MM-DD",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "endDate format : YYYY-MM-DD",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "AccountType",
+            "in": "query",
+            "description": "AccountType: 1. auto credit daily coupon code, 2. amount added by admin on cash/payment exchange, 3. order debit , 4 auto debit (daily coupon amount), 5 amount debit by admin, 6 order credit amount on cancel, 7 refund",
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    }
   }
   ,
   "securityDefinitions": {

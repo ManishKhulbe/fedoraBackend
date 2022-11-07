@@ -61,7 +61,12 @@ var UserSchema = new Schema({
     profileImage :{
         type: String,
         default:''
-    }
+    },
+    accountId: {
+        type: Schema.Types.ObjectId,
+        ref: constants.DB_MODEL_REF.ACCOUNT,
+        index: true
+    } 
     // gender: {
     //     type: Number,
     //     default: 0, //0 Undefined, 1 Male, 2 Female, 3 Others
@@ -143,6 +148,7 @@ var UserSchema = new Schema({
     // },
     
 },
+{timestamps : true}
 );
 
 //Export user module

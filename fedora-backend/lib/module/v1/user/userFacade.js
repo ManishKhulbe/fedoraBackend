@@ -96,7 +96,7 @@ async function validateOtp(params) {
         userId: user._id.toString(),
         userObj: tokenObj,
         IP: ip.address(),
-        expTime: 12 * 60 * 60,
+        expTime: 15552000,
       };
       return redisSession.create(userObj).then(function (redisSession) {
         return redisClient

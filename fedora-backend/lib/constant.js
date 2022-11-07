@@ -20,8 +20,10 @@ const SOCIAL_ACCOUNT_TYPE = {
 const DB_MODEL_REF = {
         WHITELIST   : "whitelist",
 	USER        : "User",
+	ACCOUNT :'Account',
         USERLOG     : "Userlog",
         MONGODBJOB  : "Mongodbcronjob",
+		CUSTOMER_ACCOUNT : 'CustomerAccount'
 }
 
 const TRANSACTION_TYPE = {
@@ -89,7 +91,8 @@ const MESSAGES = {
 		OTP_EXPIRED : 'OTP expired',
 		KEY_MUST_BE_NUMBER: 'account number must be number',
 		INCORRECT_MPIN :'MPIN is incorrect',
-		MOBILENO_NOT_REGISTERED :"Your entered mobile number is not registered"
+		MOBILENO_NOT_REGISTERED :"Your entered mobile number is not registered",
+		ACCOUNTTYPE_ALREADY_EXIST :'account type is already exists '
 }
 
 const EMAIL= {

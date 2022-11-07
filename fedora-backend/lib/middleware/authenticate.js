@@ -38,7 +38,7 @@ var autntctTkn = function (req, res, next) {
     __verifyTok(acsToken)
         .bind({})
         .then(function (tokenPayload) {
-            //console.log('tokenPayload: ', tokenPayload);
+            // console.log('tokenPayload: ', tokenPayload);
             if (tokenPayload.d) {
                 let userId=mongoose.Types.ObjectId(tokenPayload.d.userId)
                 req.user = tokenPayload.d;

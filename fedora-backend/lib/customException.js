@@ -40,7 +40,10 @@ module.exports = {
     },
     notRegisteredMobileNo: function(){
         return new Exception(10, constants.MESSAGES.MOBILENO_NOT_REGISTERED)
-    }
+    },
+    alreadyExistsAccountType: function () {
+        return new Exception(8, constants.MESSAGES.ACCOUNTTYPE_ALREADY_EXIST)
+    },
 };
 
 //========================== Export Module   End ===========================
