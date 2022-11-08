@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var CustomerAccount;
 
 var CustomerAccountSchema = new Schema({
-    userId: {
+    customerId: {
         type: Schema.Types.ObjectId,
         ref: constants.DB_MODEL_REF.USER,
     },
@@ -14,10 +14,19 @@ var CustomerAccountSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: constants.DB_MODEL_REF.ACCOUNT,
     },
-    accountLastAccessTime: {
-        type: Date,
-        default: Date.now
+    balance :{
+        type : Number,
+        default : 0
     },
+    accountCreated :{
+        type : Number,
+        default : 0
+    },
+    isDeleted :{
+        type : Number , //1- soft deleted , 2 -delete
+        default : 0
+    }
+
 }, { timestamps: true }
 );
 

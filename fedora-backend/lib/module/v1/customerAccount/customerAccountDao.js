@@ -9,7 +9,7 @@ var _ = require("lodash");
 //========================== Load internal modules ====================
 const customerAccountModel = require('./customerAccountModel');
 const appUtils = require('../../../appUtils')
-
+var apputils = require("../../../appUtils");
 // init user dao
 let BaseDao = require('../../../dao/baseDao');
 const customerAccountDao = new BaseDao(customerAccountModel);
@@ -19,7 +19,7 @@ const customerAccountDao = new BaseDao(customerAccountModel);
 
 function create(params) {
     console.log(params,">>>>>>>>>>>")
-    let userId = appUtils.objectIdConvert(params.userId)
+    let userId = appUtils.objectIdConvert(params.customerId)
     let accountId = appUtils.objectIdConvert(params.accountId)
     console.log(userId,">>>>>>>>>>>" ,accountId )
     let account = new customerAccountModel(params);
@@ -30,6 +30,10 @@ function create(params) {
 function isAccountTypeExists(params){
     console.log(params,">>>>>>>>>>>")
     return accountDao.findOne({ accountType :params.accountType})
+}
+
+function sameTypeAccountExists(params){
+    console.log(params ,">>>>>")
 }
 
 
@@ -140,21 +144,76 @@ async function getAllAccountAndFilter(params){
     let query = {}
     let aggPipe = [];
     let sort = {};
-    if (params.searchYear) {
-        aggPipe.push({
-            $addFields: { "year": { $year: "$createdAt" }  }
+    aggPipe.push({
+        $match: {
+          isDeleted: 0,
         },
+      });
+
+      aggPipe.push({
+        $lookup: {
+          from: "users",
+          localField: "customerId",
+          foreignField: "_id",
+          as: "userDetails",
+        },
+      });
+      aggPipe.push({
+        $unwind: {
+          path: "$userDetails",
+          preserveNullAndEmptyArrays: true,
+        },
+      });
+
+      aggPipe.push({
+        $lookup: {
+          from: "accounts",
+          localField: "accountId",
+          foreignField: "_id",
+          as: "accountDetails",
+        },
+      });
+      aggPipe.push({
+        $unwind: {
+          path: "$accountDetails",
+          preserveNullAndEmptyArrays: true,
+        },
+      });
+    aggPipe.push({
+        $project: {
+            customerId: 1,
+            accountId:1,
+            balance : 1,
+            accountCreated : 1,
+            name: "$userDetails.name" ,
+            mobileNo : "$userDetails.mobileNo", 
+            accountType : "$accountDetails.accountType",
+            createdAt: 1,
+            updatedAt: 1,
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+            day : { $dayOfMonth: "$createdAt" },
+        },
+      });
+     
+    if (params.searchYear) {
+        aggPipe.push(
             {
                 $match: { "year": { $eq: parseInt(year) } }
             })
     }
    
     if (params.searchMonth) {
-        aggPipe.push({
-            $addFields: { "month": { $month: "$createdAt" }  }
-        },
+        aggPipe.push(
             {
                 $match: { "month": { $eq: parseInt(params.searchMonth) } }
+            })
+    }
+    console.log(params.searchDay,"MMMMMMMMMMMMMMMMMMMMM")
+    if (params.searchDay) {
+        aggPipe.push(
+            {
+                $match: { "day": { $eq: parseInt(params.searchDay) } }
             })
     }
     if (params.startDate && params.endDate) {
@@ -165,54 +224,9 @@ async function getAllAccountAndFilter(params){
             { createdAt: { $lte: new Date(endDate) } },
         ];
     }
-    aggPipe.push({
-        $lookup :{
-            from: "users",
-            localField: "userId",
-            foreignField: "_id",
-            as: "userDetails"
-        }
-    })
-
-      aggPipe.push({
-        "$unwind": {
-            path: "$userDetails",
-            "preserveNullAndEmptyArrays": true
-        }
-    })
-  
-    aggPipe.push({
-        $lookup :{
-            from: "accounts",
-            localField: "accountId",
-            foreignField: "_id",
-            as: "accountDetails"
-        }
-    })
-
-    aggPipe.push({
-        "$unwind": {
-            path: "$accountDetails",
-            "preserveNullAndEmptyArrays": true
-        }
-    })
-
-    aggPipe.push({
-        $project : {
-            userId : 1,
-            accountId : 1,
-            createdAt :1,
-            updatedAt : 1,
-            name : "$userDetails.name",
-            accountType :'$accountDetails.accountType'
-        }
-    })
+   
     if (params.AccountType) {
-        aggPipe.push({ "$match": {amountType: parseInt(params.AccountType) }});
-    }
-
-    if (query){
-        aggPipe.push({ "$match": query });
+        aggPipe.push({ "$match": {accountType: parseInt(params.AccountType) }});
     }
 
     if (params.search) {
@@ -233,13 +247,58 @@ async function getAllAccountAndFilter(params){
     // console.log(mk ,"VVVVVVVVv")
 }
 
+
+function softDeleteAccount(params){
+    console.log(params)
+    console.log(params ,"<MMMMMMMMMMMMM")
+    let update = {}
+    let query = {}
+    query._id = apputils.objectIdConvert(params.customerAccountId) ;
+    if(params.isDeleted){
+        update["isDeleted"] = parseInt(params.isDeleted) ;
+    }
+
+    let options = {};
+    options.new = true;
+
+    return customerAccountDao
+    .findOneAndUpdate(query, { $set: update }, options)
+    .then(function (result) {
+      if (result) {
+        return result;
+      } else {
+        return false;
+      }
+    });
+}
+
+function deleteAccount(params){
+    console.log(params ,"..")
+    let query = {}
+    query._id = apputils.objectIdConvert(params.customerAccountId) ;
+    return customerAccountDao
+    .remove(query)
+    .then(function (result) {
+        console.log(result ,".s.")
+        if (result) {
+            return result;
+        } else {
+
+            return false;
+        }
+    });
+}
+
+
 //========================== Export Module Start ==============================
 
 module.exports = {
     create,
     isAccountTypeExists,
     getTotalAccount,
-    getAllAccountAndFilter
+    getAllAccountAndFilter,
+    softDeleteAccount,
+    deleteAccount
 };
 
 //========================== Export Module End ===============================

@@ -7,8 +7,10 @@ var Account;
 
 var AccountSchema = new Schema({
     accountType: {
-        type: Number, // 1 - saving, 2-current , 3-FD
+        type: Number, // 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account
         index: true,
+        min:1,
+        max:7,
         default:0
     },
     // accountBalance: {
@@ -30,6 +32,10 @@ var AccountSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    isDeleted: {
+        type: Number,//1-soft delete, 2= delete
+        default: 0
+    },
     //get foreign key from user
     // accountUserId: {
     //     type: Schema.Types.ObjectId,
@@ -37,6 +43,7 @@ var AccountSchema = new Schema({
     //     index: true
     // } 
 },
+{timestamps: true}
 );
 
 //Export user module

@@ -23,6 +23,9 @@ var validateAccountDetails = function (req, res, next) {
    if(!accountType){
     errors.push({ field: "accountType", message: "accountType is required" });
     }
+    if(accountType>7 || accountType<1){
+        errors.push({ field: "accountType", message: "accountType invalid" });
+        }
     //check accountInterestRate is not empty
     if(!accountInterestRate){
         errors.push({ field: "accountInterestRate", message: "accountInterestRate is required" });

@@ -181,7 +181,7 @@ let validateRegistration = function (req, res, next) {
     if(!isnum){
         errors.push({ fieldName: "accountNumber", message: constant.MESSAGES.KEY_MUST_BE_NUMBER.replace("{{key}}", "accountNumber") });
     }
-    if(_.isEmpty(accountNumber)){
+    if(!accountNumber){
         errors.push({ fieldName: "accountNumber", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "accountNumber") });
     }
     if(_.isEmpty(membershipId)){
@@ -190,10 +190,10 @@ let validateRegistration = function (req, res, next) {
     if(_.isEmpty(name)){
         errors.push({ fieldName: "name", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "name") });
     }
-    if(_.isEmpty(mobileNo)){
+    if(!mobileNo){
         errors.push({ fieldName: "mobileNo", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "mobileNo") });
     }
-    if(_.isEmpty(acceptedTermsAndCondition)){
+    if(!acceptedTermsAndCondition){
         errors.push({ fieldName: "acceptedTermsAndCondition", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "acceptedTermsAndCondition") });
     }
     //check mobileno length should be 10
@@ -204,6 +204,9 @@ let validateRegistration = function (req, res, next) {
     //check email is valid or not
     if(!appUtils.isValidEmail(email)){
         errors.push({ fieldName: "email", message: constant.MESSAGES.INVALID_EMAIL });
+    }
+    if(acceptedTermsAndCondition == 2){
+        errors.push({ fieldName: "acceptedTermsAndCondition", message: constant.MESSAGES.ACCEPT_TERMS_CONDITIONS.replace("{{key}}", "acceptedTermsAndCondition") });
     }
     if (errors && errors.length > 0) {
         validationError(errors, next);
@@ -227,8 +230,11 @@ let validateOtp = function (req, res, next) {
 let validateMpin = function (req, res, next) {
     let {mPin} = req.body;
     var errors = [];
-    if(_.isEmpty(mPin)){
+    if(!mPin){
         errors.push({ fieldName: "mPin", message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "mPin") });
+    }
+    if(mPin.length  > 4){
+        errors.push({ fieldName: "mPin", message: constant.MESSAGES.MPIN_LENGTH.replace("{{key}}", "mPin")  });
     }
     if (errors && errors.length > 0) {
         validationError(errors, next);

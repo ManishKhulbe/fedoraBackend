@@ -19,13 +19,26 @@ function getAllAccountAndFilter(params){
 function getTotalAccount(params){
     return customerAccountDao.getTotalAccount(params);
 }
+function sameTypeAccountExists(params){
+    return customerAccountDao.sameTypeAccountExists(params);
+}
+function deleteAccount(params){
+    // console.log(params ,"NNNNNNNNNN")
+    if(params.isDeleted == 1){
+        return customerAccountDao.softDeleteAccount(params)
+    }else{
+        return customerAccountDao.deleteAccount(params)
+    }
+}
 //========================== Export Module Start ==============================
 
 module.exports = {
     isAccountTypeExists,
     create,
     getTotalAccount,
-    getAllAccountAndFilter
+    getAllAccountAndFilter,
+    sameTypeAccountExists,
+    deleteAccount
 };
 
 //========================== Export Module End ===============================

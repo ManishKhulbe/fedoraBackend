@@ -9,7 +9,7 @@ var _ = require("lodash");
 //========================== Load internal modules ====================
 const accountModel = require('./accountModel');
 
-
+var apputils = require("../../../appUtils");
 // init user dao
 let BaseDao = require('../../../dao/baseDao');
 const accountDao = new BaseDao(accountModel);
@@ -26,12 +26,98 @@ function isAccountTypeExists(params){
     console.log(params,">>>>>>>>>>>")
     return accountDao.findOne({ accountType :params.accountType})
 }
+function accountList(params){
+    let aggPipe = [];
+    let query = {};
+    if (params.accountType) {
+        query.accountType = parseInt(params.accountType)
+    }
+    aggPipe.push({
+        "$match": query
+    });
+    return accountDao.aggregate(aggPipe)
+}
+
+function editAccount(params){
+console.log(params,">>>>>>>>>>>")
+
+  var update = {};
+let query = {};
+   query._id = params.accountId;
+  if (params.accountType) {
+    update["accountType"] = params.accountType;
+  }
+  if (params.accountOverdraft) {
+    update["accountOverdraft"] = params.accountOverdraft;
+  }
+  if(params.accountInterestRate){
+    update["accountInterestRate"] = params.accountInterestRate;
+  }
+  update["accountLastAccessTime"] = new Date();
+
+  let options = {};
+  options.new = true;
+  return accountDao
+    .findOneAndUpdate(query, { $set: update }, options)
+    .then(function (result) {
+      if (result) {
+        return result;
+      } else {
+        return false;
+      }
+    });
+}
+
+function softDeleteAccount(params){
+    console.log(params)
+    let update = {}
+    let query = {}
+    query._id = apputils.objectIdConvert(params.accountId) ;
+    if(params.isDeleted){
+        update["isDeleted"] = parseInt(params.isDeleted) ;
+    }
+
+    let options = {};
+    options.new = true;
+
+    return accountDao
+    .findOneAndUpdate(query, { $set: update }, options)
+    .then(function (result) {
+      if (result) {
+        return result;
+      } else {
+        return false;
+      }
+    });
+}
+
+function deleteAccount(params){
+    console.log(params ,"..")
+    let query = {}
+    query._id = apputils.objectIdConvert(params.accountId) ;
+    return accountDao
+    .remove(query)
+    .then(function (result) {
+        console.log(result ,".s.")
+        if (result) {
+            return result;
+        } else {
+
+            return false;
+        }
+    });
+}
+
 
 //========================== Export Module Start ==============================
 
 module.exports = {
     create,
-    isAccountTypeExists
+    isAccountTypeExists,
+    accountList,
+    editAccount,
+    softDeleteAccount,
+    deleteAccount
 };
 
 //========================== Export Module End ===============================

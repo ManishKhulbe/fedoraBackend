@@ -1,72 +1,77 @@
 // Importing mongoose
 var mongoose = require("mongoose");
-var constants = require('../../../constant');
+var constants = require("../../../constant");
 
 var Schema = mongoose.Schema;
 var User;
 
-var UserSchema = new Schema({
+var UserSchema = new Schema(
+  {
     name: {
-        type: String,
-        default:''
+      type: String,
+      default: "",
     },
     mobileNo: {
-        type: String,
-        index: true,
+      type: String,
+      index: true,
     },
-    email :{
-        type:String
+    email: {
+      type: String,
     },
     mPIN: {
-        type: String,
-        default:''
+      type: String,
+      default: "",
     },
-    membershipId :{
-        type: String
+    membershipId: {
+      type: String,
     },
-    accountNumber :{
-        type: Number
+    accountNumber: {
+      type: Number,
     },
-    userType:{
-        type: Number,
-        default: 1, //1-user, 2-company , 3-admin
+    userType: {
+      type: Number,
+      default: 1, /// 1 -Admin  , 2 - normal User
     },
     deviceToken: {
-        type: String
+      type: String,
     },
     deviceID: {
-        type: String,
+      type: String,
     },
     deviceTypeId: {
-        type: Number,
-        default: 1, //1 iOS , 2 android , 3 web
-        min:1,
-        max:3
+      type: Number,
+      default: 1, //1 iOS , 2 android , 3 web
+      min: 1,
+      max: 3,
     },
     status: {
-        type: Number,
-        default: 1
+      type: Number,
+      default: 1,
     },
     isDelete: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     created: {
-        type: Date,
-        default: Date.now
+      type: Date,
+      default: Date.now,
     },
     updated: {
-        type: Date,
+      type: Date,
     },
-    profileImage :{
-        type: String,
-        default:''
+    profileImage: {
+      type: String,
+      default: "",
     },
     accountId: {
-        type: Schema.Types.ObjectId,
-        ref: constants.DB_MODEL_REF.ACCOUNT,
-        index: true
-    } 
+      type: Schema.Types.ObjectId,
+      ref: constants.DB_MODEL_REF.ACCOUNT,
+      index: true,
+    },
+    isAdmin: {
+      type: Number, 
+      default: 0,
+    },
     // gender: {
     //     type: Number,
     //     default: 0, //0 Undefined, 1 Male, 2 Female, 3 Others
@@ -144,14 +149,11 @@ var UserSchema = new Schema({
     //     type: String,
     // },
     // stackoverflow:{
-        // type: String,
+    // type: String,
     // },
-    
-},
-{timestamps : true}
+  },
+  { timestamps: true }
 );
 
 //Export user module
 User = module.exports = mongoose.model(constants.DB_MODEL_REF.USER, UserSchema);
-
-

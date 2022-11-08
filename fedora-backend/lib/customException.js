@@ -42,8 +42,11 @@ module.exports = {
         return new Exception(10, constants.MESSAGES.MOBILENO_NOT_REGISTERED)
     },
     alreadyExistsAccountType: function () {
-        return new Exception(8, constants.MESSAGES.ACCOUNTTYPE_ALREADY_EXIST)
+        return new Exception(11, constants.MESSAGES.ACCOUNTTYPE_ALREADY_EXIST)
     },
+    unauthorizedAccess: function () {
+        return new Exception(12, constants.MESSAGES.UNAUTHORIZED_ACCESS)
+    }
 };
 
 //========================== Export Module   End ===========================

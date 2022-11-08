@@ -244,6 +244,7 @@ function _buildUserTokenGenObj(user) {
   userObj.deviceID = user.deviceID ? user.deviceID : null;
   userObj.userId = user._id.toString();
   userObj.userType = user.userType;
+  userObj.isAdmin = user.isAdmin;
   userObj.status = user.status;
   userObj.mobileNo = user.mobileNo;
   return userObj;

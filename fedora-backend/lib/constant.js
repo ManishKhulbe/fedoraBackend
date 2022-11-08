@@ -92,7 +92,10 @@ const MESSAGES = {
 		KEY_MUST_BE_NUMBER: 'account number must be number',
 		INCORRECT_MPIN :'MPIN is incorrect',
 		MOBILENO_NOT_REGISTERED :"Your entered mobile number is not registered",
-		ACCOUNTTYPE_ALREADY_EXIST :'account type is already exists '
+		ACCOUNTTYPE_ALREADY_EXIST :'account type is already exists ',
+		ACCEPT_TERMS_CONDITIONS:' Please Accept terms and condition first ',
+		MPIN_LENGTH : 'MPIN must be 4 digit',
+		UNAUTHORIZED_ACCESS : 'Access denied',
 }
 
 const EMAIL= {

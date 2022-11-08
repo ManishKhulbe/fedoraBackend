@@ -30,7 +30,12 @@ const client = require("twilio")(accountSid, authToken);
 
 function create(params) {
   let self = this;
-  return customerAccountService
+  params.userType = appUtils.isAdmin(params.userType);
+//   return customerAccountService.sameTypeAccountExists(params).then((isExist)=>{
+// if(!isExist){
+//   throw customException.alreadyExistsAccountType();
+// }
+    return customerAccountService
     .create(params)
     .then(function (account) {
       return customerAccountMapper.createMapping(account);
@@ -38,6 +43,8 @@ function create(params) {
     .catch(function (err) {
       throw err;
     });
+  // })
+  
 }
 
 function getAllAccount(params) {
@@ -56,11 +63,26 @@ function getAllAccount(params) {
   });
 }
 
+function deleteAccount(params){
+ 
+  params.userType = appUtils.isAdmin(params.userType);
+  return customerAccountService.deleteAccount(params).then(function (result) {
+    if (result) {
+      return customerAccountMapper.deleteAccountMapping(result, params);
+    } else {
+      throw exceptions.yearNotExist();
+    }
+  });
+}
+
+
+
 //========================== Export Module Start ==============================
 
 module.exports = {
   create,
   getAllAccount,
+  deleteAccount
 };
 
 //========================== Export Module End ================================

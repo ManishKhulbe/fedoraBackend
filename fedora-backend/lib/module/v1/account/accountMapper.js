@@ -20,9 +20,34 @@
    return respObj;
  }
  
+function accountListMapping(params , requestParams){
+    var respObj = {
+        message: "List of Accounts",
+        AccountDetails: params,
+        count : params.length,
+      };
+      return respObj;
+    }
 
+function editAccountMapping(params , requestParams){
+  var respObj = {
+  message: "Account Updated Successfully",
+  AccountDetails: params,
+ };
+ return respObj;
+}
+
+function deleteAccountMapping(params){
+  var respObj = {
+    message: "Deleted Successfully",
+   };
+   return respObj;
+}
  
  module.exports = {
-    createMapping
+    createMapping,
+    accountListMapping,
+    editAccountMapping,
+    deleteAccountMapping
  };
  

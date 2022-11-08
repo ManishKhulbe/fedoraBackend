@@ -11,6 +11,8 @@ const mongoose = require("mongoose");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+const exceptions = require("./customException");
+const constants = require('./constant');
 //========================== Load Modules End =============================
 
 //========================== Export Module Start ===========================
@@ -36,6 +38,8 @@ function isValidEmail(email) {
     var pattern = /(([a-zA-Z0-9\-?\.?]+)@(([a-zA-Z0-9\-_]+\.)+)([a-z]{2,3}))+$/;
     return new RegExp(pattern).test(email);
 }
+
+
 
 /**
  * returns if zipCode is valid or not (for US only)
@@ -145,6 +149,17 @@ async function  sendBySms(phone, otp) {
     })
 }
 
+function isAdmin(params){
+console.log(params,">>>>>>>>")
+    if(params == 1 )
+    {
+        return params;
+    }
+    else{
+        throw exceptions.unauthorizedAccess(constants.MESSAGES.UNAUTHORIZED_ACCESS);
+    }
+}
+
 
 //========================== Export Module Start ===========================
 
@@ -162,7 +177,8 @@ module.exports = {
     isValidPhone,
     getRandomOtpSix,
     sendBySms,
-    objectIdConvert
+    objectIdConvert,
+    isAdmin
 };
 
 //========================== Export Module End===========================

@@ -30,6 +30,7 @@ const client = require('twilio')(accountSid, authToken);
                    
 function create(params) {
   let self = this;
+  params.userType = appUtils.isAdmin(params.userType);
   return accountService
     .isAccountTypeExists(params)
     .bind({})
@@ -49,10 +50,57 @@ function create(params) {
 }
 
 
+function getAllAccounts(params) {
+  params.userType = appUtils.isAdmin(params.userType);
+console.log(params)
+const accountList = accountService.accountList(params);
+
+
+return Promise.all([
+  accountList,
+])
+  .then(function (result) {
+    return accountMapper.accountListMapping(
+      result[0],
+      params
+    );
+  })
+  .catch((err) => {
+    console.log(err, "ttttttttttttttttttt");
+  });
+}
+
+
+function editAccount(params){
+  params.userType = appUtils.isAdmin(params.userType);
+  return accountService.editAccount(params).then(function (result) {
+    if (result) {
+      return accountMapper.editAccountMapping(result, params);
+    } else {
+      throw exceptions.yearNotExist();
+    }
+  });
+}
+
+function deleteAccount(params){
+  params.userType = appUtils.isAdmin(params.userType);
+  return accountService.deleteAccount(params).then(function (result) {
+    if (result) {
+      return accountMapper.deleteAccountMapping(result, params);
+    } else {
+      throw exceptions.yearNotExist();
+    }
+  });
+}
+
+
 //========================== Export Module Start ==============================
 
 module.exports = {
-    create
+    create,
+    getAllAccounts,
+    editAccount,
+    deleteAccount
 };
 
 //========================== Export Module End ================================

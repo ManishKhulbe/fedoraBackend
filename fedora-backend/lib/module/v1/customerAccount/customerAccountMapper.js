@@ -22,10 +22,21 @@ function createMapping(params) {
 
 function accountListMapping(result0, result1, params) {
   console.log(params);
-  return {AccountDetails : result0, TotalAccount : result1};
+  let dataCount = result0.length 
+  return {AccountDetails : result0, 
+    TotalAccount : dataCount,
+    };
+}
+
+function deleteAccountMapping(params){
+  var respObj = {
+    message: "Deleted Successfully",
+   };
+   return respObj;
 }
 
 module.exports = {
   createMapping,
   accountListMapping,
+  deleteAccountMapping
 };

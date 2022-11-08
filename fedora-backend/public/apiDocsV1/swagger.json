@@ -69,7 +69,7 @@
             "in": "formData",
             "description": "accountNumber of your bank account",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "membershipId",
@@ -97,7 +97,7 @@
             "in": "formData",
             "description": "your registered mobileNo",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "acceptedTermsAndCondition",
@@ -105,7 +105,7 @@
             "description": "acceptedTermsAndCondition 1 - true 2 -false",
             "required": false,
             "enum": [1, 2],
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -143,7 +143,7 @@
             "in": "formData",
             "description": "MPIN",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -280,7 +280,7 @@
               "in": "formData",
               "description": "MPIN",
               "required": true,
-              "type": "string"
+              "type": "integer"
             }
           ],
           "responses": {
@@ -301,7 +301,7 @@
           ]
         }
      },
-     "/Account/create": {
+     "/account/create": {
       "post": {
         "deprecated": false,
         "tags": ["Account"],
@@ -319,7 +319,7 @@
           {
             "name": "accountType",
             "in": "formData",
-            "description": "accountType 1 - SBA ,2 - RDA ,3 - FDA, 4 - LAA, 5 - ODA",
+            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
             "required": true,
             "type": "number"
           },
@@ -353,6 +353,151 @@
         ]
       }
     },
+    "/account/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "query",
+            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "required": false,            
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/account/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": " accountId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "required": false,            
+            "type": "number"
+          },
+          {
+            "name": "accountOverdraft",
+            "in": "formData",
+            "description": "year",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountInterestRate",
+            "in": "formData",
+            "description": "accountInterestRate",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/account/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "description": " accountId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/customerAccount/create": {
       "post": {
         "deprecated": false,
@@ -369,7 +514,7 @@
              "type": "string"
            },
           {
-            "name": "userId",
+            "name": "customerId",
             "in": "formData",
             "description": "customerId",
             "required": true,
@@ -381,6 +526,20 @@
             "description": "accountId",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "balance",
+            "in": "formData",
+            "description": "accountId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name"  : "accountCreated",
+            "in": "formData",
+            "description": "accountCreated timstamp in miliseconds",
+            "required": false,
+            "type": "integer"
           }
         ],
         "responses": {
@@ -435,6 +594,13 @@
             "type": "number"
           },
           {
+            "name": "searchDay",
+            "in": "query",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "number"
+          },
+          {
             "name": "startDate",
             "in": "query",
             "description": "startDate format : YYYY-MM-DD",
@@ -451,7 +617,7 @@
           {
             "name": "AccountType",
             "in": "query",
-            "description": "AccountType: 1. auto credit daily coupon code, 2. amount added by admin on cash/payment exchange, 3. order debit , 4 auto debit (daily coupon amount), 5 amount debit by admin, 6 order credit amount on cancel, 7 refund",
+            "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
             "type": "number"
           },
           {
@@ -497,7 +663,63 @@
           }
         ]
       }
+    },
+    "/customerAccount/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": " customerAccountId",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
     }
+
+
+
+
+
+
+
+
   }
   ,
   "securityDefinitions": {

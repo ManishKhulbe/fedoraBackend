@@ -14,13 +14,19 @@ const constant = require("../../../constant");
 
 router
   .route("/create")
-  .post( function (req, res) {
+  .post([middleware.authenticate.autntctTkn], function (req, res) {
     console.log(req.body);
-    var { userId, accountId } = req.body;
+    let {userId , userType} = req.user
+    var { customerId, accountId , balance ,accountCreated } = req.body;
+   
     customerAccountFacade
       .create({
+        customerId,
         accountId,
+        balance,
         userId,
+        userType,
+        accountCreated
       })
       .then(function (result) {
         resHndlr.sendSuccess(res, result, req);
@@ -34,11 +40,11 @@ router
   .route("/list")
   .get([middleware.authenticate.autntctTkn], function (req, res) {
     console.log(req.query)
-    let {userId, status} = req.user
-    let {search, count, sortType, sortField, pageNo, startDate, endDate,AccountType,searchYear,searchMonth} = req.query
+    let {userId, userType} = req.user
+    let { search, count,searchDay ,sortType, sortField, pageNo, startDate, endDate,AccountType,searchYear,searchMonth} = req.query
     customerAccountFacade
       .getAllAccount({
-        search, count, sortType, sortField, pageNo, startDate, endDate,AccountType,searchYear,searchMonth
+        searchDay,userId ,userType ,search, count, sortType, sortField, pageNo, startDate, endDate,AccountType,searchYear,searchMonth
       })
       .then(function (result) {
         resHndlr.sendSuccess(res, result, req);
@@ -48,6 +54,20 @@ router
       });
   });
 
-  
+  router
+  .route("/delete")
+  .delete([middleware.authenticate.autntctTkn], function (req, res) {
+    let {userType , userId} = req.user;
+    let {customerAccountId , isDeleted}  = req.query;
+    
+    customerAccountFacade
+      .deleteAccount({customerAccountId ,userType,userId , isDeleted})
+      .then(function (result) {
+        resHndlr.sendSuccess(res, result, req);
+      })
+      .catch(function (err) {
+        resHndlr.sendError(res, err, req);
+      });
+  });
   
 module.exports = router;
