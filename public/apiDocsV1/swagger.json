@@ -728,23 +728,30 @@
             "type": "string"
           },
           {
-            "name": "customerId",
+            "name": "senderAccountNumber",
             "in": "formData",
-            "description": " customerAccountId",
-            "required": true,            
-            "type": "string"
-          },
-          {
-            "name": "accountIdTo",
-            "in": "formData",
-            "description": "accountIdTo",
+            "description": " accountNumber",
             "required": true,            
             "type": "number"
           },
           {
-            "name": "trancationAmount",
+            "name": "receiverAccountNumber",
             "in": "formData",
-            "description": "trancationAmount",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "transactionType",
+            "in": "formData",
+            "description": "transactionType 1-credit 2-debit ", 
             "required": true,            
             "type": "number"
           },
