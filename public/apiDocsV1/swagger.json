@@ -24,8 +24,8 @@
       }
     },
     {
-      "name": "Admin",
-      "description": "Operations about user",
+      "name": "Transaction",
+      "description": "Operations about transactions",
       "externalDocs": {
         "description": "Find out more about our store",
         "url": ""
@@ -696,6 +696,66 @@
             ],
             "type": "integer"
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/fundTransfer": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": " customerAccountId",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "accountIdTo",
+            "in": "formData",
+            "description": "accountIdTo",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "trancationAmount",
+            "in": "formData",
+            "description": "trancationAmount",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",
+            "required": true,            
+            "type": "string"
+          }
+        
         ],
         "responses": {
           "200": {
