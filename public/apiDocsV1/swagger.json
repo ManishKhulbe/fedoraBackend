@@ -46,6 +46,14 @@
         "description": "Find out more about our store",
         "url": ""
       }
+    },
+    {
+      "name": "Online Services",
+      "description": "Operations about Online Services",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -144,6 +152,44 @@
             "description": "MPIN",
             "required": true,
             "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editProfileImage": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "profileImage",
+            "in": "formData",
+            "description": "profileImage",
+            "required": true,
+            "type": "file"
           }
         ],
         "responses": {
@@ -664,6 +710,56 @@
         ]
       }
     },
+    "/transaction/listByUser": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "accountNumber",
+            "in": "query",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/customerAccount/delete": {
       "delete": {
         "deprecated": false,
@@ -695,6 +791,37 @@
               2
             ],
             "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/listByCustomer": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
           }
         ],
         "responses": {
@@ -778,7 +905,243 @@
           }
         ]
       }
+    },
+    "/onlineServices/apply": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceApplyFor",
+            "in": "formData",
+            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": "1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",         
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceApplyFor",
+            "in": "query",
+            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",          
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "search by customer name  ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchYear",
+            "in": "query",
+            "description": "enter a valid year",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchMonth",
+            "in": "query",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchDay",
+            "in": "query",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceApplyFor",
+            "in": "formData",
+            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",          
+            "type": "number"
+          },
+          {
+            "name": "onlineServiceId",
+            "in": "formData",
+            "description": " onlineServiceId",  
+            "required": true,        
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Remark 0-pending 1- fulfiled 2-rejected",         
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "remark  ",
+            "type": "string"
+          },
+          {
+            "name": "reply",
+            "in": "formData",
+            "description": "reply",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fulfilDate",
+            "in": "formData",
+            "description": "timestamp ",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
     }
+
+    
 
 
 
