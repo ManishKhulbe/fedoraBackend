@@ -1575,6 +1575,54 @@
           }
         ]
       }
+    },
+    "/onlineServices/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "onlineServicesId",
+            "in": "query",
+            "description": " onlineServicesId",
+            "required": true,         
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
     }
 
     
