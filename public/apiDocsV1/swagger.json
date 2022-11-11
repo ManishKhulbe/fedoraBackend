@@ -32,6 +32,14 @@
       }
     },
     {
+      "name": "Admin",
+      "description": "Admin",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
       "name": "Account",
       "description": "Operations about Accounts",
       "externalDocs": {
@@ -97,7 +105,7 @@
             "name": "email",
             "in": "formData",
             "description": "email",
-            "required": true,
+           
             "type": "string"
           },
           {
@@ -131,6 +139,310 @@
         ]
       }
     },
+    "/user/register1": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "accountNumber of your bank account",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "membershipId",
+            "in": "formData",
+            "description": "membershipId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+           
+            "type": "string"
+          },
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "acceptedTermsAndCondition",
+            "in": "formData",
+            "description": "acceptedTermsAndCondition 1 - true 2 -false",
+            "required": false,
+            "enum": [1, 2],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/addUser": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "membershipId",
+            "in": "formData",
+            "description": "membershipId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "name",
+        
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password",
+            "type": "string"
+          },
+          
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+          
+            "type": "integer"
+          },
+          {
+            "name": "userType",
+            "in": "formData",
+            "description": "userType 1 -Admin  , 2 - normal User",
+            "type": "integer"
+          },
+          {
+            "name": "acceptedTermsAndCondition",
+            "in": "formData",
+            "description": "acceptedTermsAndCondition 1 - true 2 -false",
+            "required": false,
+            "enum": [1, 2],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editUser": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "customerId",
+            "type": "string"
+          },
+          {
+            "name": "membershipId",
+            "in": "query",
+            "description": "membershipId",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+        
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email",
+            "type": "string"
+          },
+          {
+            "name": "mobileNo",
+            "in": "query",
+            "description": "your registered mobileNo",
+          
+            "type": "integer"
+          },
+          {
+            "name": "userType",
+            "in": "query",
+            "description": "userType 1 -Admin  , 2 - normal User",
+            "type": "integer"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "1 Active, 2 inActive",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/user/userList": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "Employee list",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "1 Active, 2 inActive",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "search by name/mobileNo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "page No",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sort type",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sort field",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": [
+              "username:",
+              "Password:"
+            ]
+          }
+        ]
+      }
+    },
     "/user/login": {
       "post": {
         "deprecated": false,
@@ -143,7 +455,7 @@
             "name": "accessToken",
             "in": "header",
              "description": "access token",
-            "required": true,
+             "required": true,
              "type": "string"
            },
           {
@@ -152,6 +464,130 @@
             "description": "MPIN",
             "required": true,
             "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/firstLogin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "formData",
+             "description": "mobileNo",
+             "required": true,
+             "type": "integer"
+           },
+          {
+            "name": "mPin",
+            "in": "formData",
+            "description": "MPIN",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/deleteUser": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": " customerId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/loginAsAdmin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
