@@ -1267,4 +1267,104 @@
 //         }
 //       ]
 //     }
+
+
+// "/user/validateOtp1": {
+//     "post": {
+//       "deprecated": false,
+//       "tags": ["User"],
+//       "description": "Login",
+//       "consumes": ["application/x-www-form-urlencoded"],
+//       "produces": ["application/json"],
+//       "parameters": [
+//         {
+//           "name": "otp",
+//           "in": "formData",
+//           "description": "OTP",
+//           "required": true,
+//           "type": "string"
+//         }
+//       ],
+//       "responses": {
+//         "200": {
+//           "description": "Successfully"
+//         },
+//         "401": {
+//           "description": "Unauthorized"
+//         }
+//       },
+//       "security": [
+//         {
+//           "basicAuth": ["Username: ", "Password: "]
+//         }
+//       ]
+//     }
+//   },
   
+// "/user/register1": {
+//     "post": {
+//       "deprecated": false,
+//       "tags": ["User"],
+//       "description": "Login",
+//       "consumes": ["application/x-www-form-urlencoded"],
+//       "produces": ["application/json"],
+//       "parameters": [
+//         {
+//           "name": "accountNumber",
+//           "in": "formData",
+//           "description": "accountNumber of your bank account",
+//           "required": true,
+//           "type": "integer"
+//         },
+//         {
+//           "name": "membershipId",
+//           "in": "formData",
+//           "description": "membershipId",
+//           "required": true,
+//           "type": "string"
+//         },
+//         {
+//           "name": "name",
+//           "in": "formData",
+//           "description": "name",
+//           "required": true,
+//           "type": "string"
+//         },
+//         {
+//           "name": "email",
+//           "in": "formData",
+//           "description": "email",
+         
+//           "type": "string"
+//         },
+//         {
+//           "name": "mobileNo",
+//           "in": "formData",
+//           "description": "your registered mobileNo",
+//           "required": true,
+//           "type": "integer"
+//         },
+//         {
+//           "name": "acceptedTermsAndCondition",
+//           "in": "formData",
+//           "description": "acceptedTermsAndCondition 1 - true 2 -false",
+//           "required": false,
+//           "enum": [1, 2],
+//           "type": "integer"
+//         }
+//       ],
+//       "responses": {
+//         "200": {
+//           "description": "Successfully"
+//         },
+//         "401": {
+//           "description": "Unauthorized"
+//         }
+//       },
+//       "security": [
+//         {
+//           "basicAuth": ["Username: ", "Password: "]
+//         }
+//       ]
+//     }
+//   },
