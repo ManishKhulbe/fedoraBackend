@@ -131,7 +131,106 @@
         ]
       }
     },
-   
+    "/user/logout": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/forgotPassword": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/resetPassword": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/addUser": {
       "post": {
         "deprecated": false,
@@ -186,15 +285,8 @@
             "in": "formData",
             "description": "userType 1 -Admin  , 2 - normal User",
             "type": "integer"
-          },
-          {
-            "name": "acceptedTermsAndCondition",
-            "in": "formData",
-            "description": "acceptedTermsAndCondition 1 - true 2 -false",
-            "required": false,
-            "enum": [1, 2],
-            "type": "integer"
           }
+          
         ],
         "responses": {
           "200": {
@@ -639,6 +731,44 @@
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json"],
         "parameters": [
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/validateForgetPassOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email of user's",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "otp",
             "in": "formData",
