@@ -62,6 +62,14 @@
         "description": "Find out more about our store",
         "url": ""
       }
+    },
+    {
+      "name": "Benificiary",
+      "description": "Operations about Benificiary",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -1260,6 +1268,64 @@
         ]
       }
     },
+    "/benificiary/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Benificiary"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "senderUserID",
+            "in": "query",
+            "description": " senderUserID",
+                      
+            "type": "string"
+          },
+          {
+            "name": "receiverUserID",
+            "in": "query",
+            "description": " receiverUserID",
+              
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
     "/customerAccount/delete": {
       "delete": {
         "deprecated": false,
