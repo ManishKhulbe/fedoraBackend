@@ -257,7 +257,7 @@
             "name": "name",
             "in": "formData",
             "description": "name",
-        
+            "required": true,
             "type": "string"
           },
           {
@@ -277,13 +277,13 @@
             "name": "mobileNo",
             "in": "formData",
             "description": "your registered mobileNo",
-          
+            "required": true,
             "type": "integer"
           },
           {
             "name": "userType",
             "in": "formData",
-            "description": "userType 1 -Admin  , 2 - normal User",
+            "description": "userType 1 -Admin  , 2 - normal User by default it will be 2",
             "type": "integer"
           }
           
@@ -700,6 +700,14 @@
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json"],
         "parameters": [
+
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
           {
             "name": "otp",
             "in": "formData",
@@ -731,6 +739,13 @@
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json"],
         "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
           {
             "name": "otp",
             "in": "formData",
@@ -867,13 +882,6 @@
             "description": "accountInterestRate",
             "required": true,
             "type": "number"
-          },
-          {
-            "name": "accountOverdraft",
-            "in": "formData",
-            "description": "accountOverdraft",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -957,13 +965,6 @@
             "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
             "required": false,            
             "type": "number"
-          },
-          {
-            "name": "accountOverdraft",
-            "in": "formData",
-            "description": "year",
-            "required": false,
-            "type": "string"
           },
           {
             "name": "accountInterestRate",
