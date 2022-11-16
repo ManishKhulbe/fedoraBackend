@@ -1292,7 +1292,7 @@
              "type": "string"
            },
            {
-            "name": "search ",
+            "name": "search",
             "in": "query",
             "description": " search by name and mobile number ",
                      
@@ -1495,6 +1495,43 @@
              "description": "access token",
             "required": true,
              "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/checkBalance": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": "customerAccountId",
+            "type": "string"
           }
         ],
         "responses": {
