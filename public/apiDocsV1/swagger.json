@@ -924,6 +924,151 @@
         ]
       }
     },
+    "/user/pendingOnlineServices": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/addSharePrice": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "currentValue",
+            "in": "formData",
+            "description": "currentValue",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editSharePrice": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "shareId",
+            "in": "formData",
+             "description": "shareId",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "currentValue",
+            "in": "formData",
+            "description": "currentValue",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/getSharePrice": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
      "/user/createMpin": {
      "post": {
      "deprecated": false,
@@ -1773,7 +1918,7 @@
             "name": "remark",
             "in": "formData",
             "description": "Remark",
-            "required": true,            
+                
             "type": "string"
           }
         
