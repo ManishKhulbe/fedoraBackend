@@ -1226,6 +1226,89 @@
         ]
       }
     },
+    "/customerAccount/getReceiverDetails": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "receiverAccountNumber",
+            "in": "query",
+            "description": "receiverAccountNumber",
+            "required": true,
+            "type": "number"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/addBalance": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "beneficiaryAccountNumber",
+            "in": "query",
+            "description": "receiverAccountNumber",
+            "required": true,
+            "type": "number"
+           },
+           {
+            "name": "amount",
+            "in": "query",
+            "description": "amount",
+            "required": true,
+            "type": "number"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/transaction/listByUser": {
       "get": {
         "deprecated": false,
@@ -1625,11 +1708,11 @@
             "type": "string"
           },
           {
-            "name": "serviceApplyFor",
+            "name": "serviceId",
             "in": "formData",
-            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
+            "description": "serviceId serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
             "required": true,            
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "remark",
@@ -1676,10 +1759,10 @@
             "type": "string"
           },
           {
-            "name": "serviceApplyFor",
+            "name": "serviceId",
             "in": "query",
-            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",          
-            "type": "number"
+            "description": "serviceId",          
+            "type": "string"
           },
           {
             "name": "status",
@@ -1775,10 +1858,10 @@
             "type": "string"
           },
           {
-            "name": "serviceApplyFor",
+            "name": "serviceId",
             "in": "formData",
-            "description": " serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",          
-            "type": "number"
+            "description": " serviceId",          
+            "type": "string"
           },
           {
             "name": "onlineServiceId",
@@ -1907,17 +1990,16 @@
              "type": "string"
            },
            {
-            "name": "serviceType",
+            "name": "serviceName",
             "in": "formData",
-            "description": "serviceType should be a number ",
+            "description": "serviceName ",
             "required": true,
-            "type": "integer"
+            "type": "string"
           },
           {
-            "name": "discription",
+            "name": "description",
             "in": "formData",
-            "description": "discription",
-            "required": true,
+            "description": "description",
             "type": "string"
           },
           {
