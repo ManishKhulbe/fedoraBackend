@@ -831,7 +831,7 @@
         ]
       }
     },
-    "/user/totalNoOfUser": {
+    "/user/getAdminDashBoard": {
       "get": {
         "deprecated": false,
         "tags": ["Dashboard"],
