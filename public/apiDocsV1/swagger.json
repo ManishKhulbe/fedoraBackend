@@ -305,6 +305,13 @@
             "type": "integer"
           },
           {
+            "name": "allotedStocks",
+            "in": "formData",
+            "description": "allotedStocks  to customer",
+            "required": true,
+            "type": "integer"
+          },
+          {
             "name": "userType",
             "in": "formData",
             "description": "userType 1 -Admin  , 2 - normal User by default it will be 2",
@@ -346,6 +353,7 @@
             "name": "customerId",
             "in": "query",
             "description": "customerId",
+            "required": true,
             "type": "string"
           },
           {
@@ -372,6 +380,13 @@
             "in": "query",
             "description": "your registered mobileNo",
           
+            "type": "integer"
+          },
+          {
+            "name": "allotedStocks",
+            "in": "query",
+            "description": "allotedStocks  to customer",
+        
             "type": "integer"
           },
           {
