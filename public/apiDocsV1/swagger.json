@@ -2302,9 +2302,9 @@
              "type": "string"
            },
            {
-            "name": "serviceType",
+            "name": "serviceName",
             "in": "query",
-            "description": " serviceType",    
+            "description": " serviceName",    
             "type": "string"
           },
           {
@@ -2365,10 +2365,11 @@
             "type": "string"
           },
           {
-            "name": "serviceType",
+            "name": "serviceName",
             "in": "formData",
-            "description": " serviceType 1- new account opening , 2- apply for loan , 3- apply for locker ",          
-            "type": "number"
+            "description": "serviceName ",
+          
+            "type": "string"
           },
           {
             "name": "status",
