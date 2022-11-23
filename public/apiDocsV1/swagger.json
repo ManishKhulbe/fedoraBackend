@@ -2378,9 +2378,9 @@
             "type": "number"
           },
           {
-            "name": "discription",
+            "name": "description",
             "in": "formData",
-            "description": " discription",  
+            "description": " description",  
             "required": false,        
             "type": "string"
           },
