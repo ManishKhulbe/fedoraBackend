@@ -1463,20 +1463,6 @@
             "type": "number"
           },
           {
-            "name": "startDate",
-            "in": "query",
-            "description": "startDate format : YYYY-MM-DD",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "endDate format : YYYY-MM-DD",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "AccountType",
             "in": "query",
             "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
