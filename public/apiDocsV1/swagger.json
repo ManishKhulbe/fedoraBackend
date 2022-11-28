@@ -231,6 +231,44 @@
         ]
       }
     },
+    "/user/deleteBeneficiary": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Beneficiary"],
+        "description": "deleteBeneficiary",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "beneficiaryId",
+            "in": "query",
+            "description": "beneficiaryId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/logout": {
       "delete": {
         "deprecated": false,
