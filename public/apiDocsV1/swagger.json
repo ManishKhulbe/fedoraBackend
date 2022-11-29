@@ -428,7 +428,7 @@
           {
             "name": "userType",
             "in": "formData",
-            "description": "userType 1 -Admin  , 2 - normal User by default it will be 2",
+            "description": "userType 1 -Admin  , 2 - normal User by default it will be 2  3-Admin 4-Manager",
             "type": "integer"
           }
           
@@ -1476,6 +1476,63 @@
             "in": "formData",
             "description": "accountCreated timstamp in miliseconds",
             "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/calculateInterest": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": "accountType",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "timePeriod",
+            "in": "formData",
+            "description": "timePeriod",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "timePeriodType",
+            "in": "formData",
+            "description": "timePeriodType 1- days, 2- months, 3- years",
+            "required": true,
+            "enum": [
+              1,
+              2,
+              3
+            ],
             "type": "integer"
           }
         ],
