@@ -428,7 +428,7 @@
           {
             "name": "userType",
             "in": "formData",
-            "description": "userType 1 -Admin  , 2 - normal User by default it will be 2  3-Admin 4-Manager",
+            "description": "userType 1 -SuperAdmin  , 2 - normal User by default it will be 2  3-Admin 4-Manager 5 viewer",
             "type": "integer"
           }
           
