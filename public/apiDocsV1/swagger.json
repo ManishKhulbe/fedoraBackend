@@ -448,6 +448,45 @@
         ]
       }
     },
+
+    "/user/updateDeviceToken": {
+      "put": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token of user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "deviceToken",
+            "in": "formData",
+            "description": "deviceToken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+      "responses": {
+        "200": {
+          "description": "Successfully"
+        },
+        "401": {
+          "description": "Unauthorized"
+        }
+      },
+      "security": [
+        {
+          "basicAuth": ["Username: ", "Password: "]
+        }
+      ]
+    }
+  },
     "/user/editUser": {
       "put": {
         "deprecated": false,
@@ -1817,6 +1856,12 @@
             "in": "query",
             "description": " name", 
             "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "query",
+            "description": " accountType", 
+            "type": "number"
           },
              {
               "name": "senderAccountType",
