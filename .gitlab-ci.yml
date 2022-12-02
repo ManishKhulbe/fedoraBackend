@@ -1,0 +1,24 @@
+# Python docker image on which this would be run
+    image: python:3.8
+
+#This command is run before actual stages start running
+    # before_script:
+    #   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    #   - npm install
+
+    stages:
+      - deploy
+
+    deploy:dev:
+      stage: deploy
+      script:
+        - bash deploy/deploy-dev.sh
+      only:
+        - developer
+
+    deploy:stag:
+      stage: deploy
+      script:
+        - bash deploy/deploy-stag.sh
+      only:
+        - staging
