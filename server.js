@@ -14,6 +14,13 @@ const config = require('./lib/config');
 // Import mongodb cronjob
 //require('./lib/mongodbJobScheduler');
 
+
+//import cron scheduler
+// let crons = require('./lib/cronJobScheduler')
+// crons.deleteNotification('*/10 * * * * *')
+
+
+
 // Import logger
 var logger = require('./lib/logger').logger;
 
