@@ -86,6 +86,14 @@
         "description": "Find out more about our store",
         "url": ""
       }
+    },
+    {
+      "name": "Notification",
+      "description": "Operations about Notification",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -1945,6 +1953,132 @@
         ]
       }
     },
+
+    "/notification/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "Notification",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/notification/notificationDetails": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "notificationDetails",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "notificationId",
+            "in": "query",
+            "description": " notificationId",          
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/notification/deleteNotificationWithCron": {
+      "delete": {
+        "deprecated": true,
+        "tags": ["Notification"],
+        "description": "notificationDetails",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "timePeriod",
+            "in": "query",
+            "description": " timePeriod",          
+            "type": "number"
+          },
+          {
+            "name": "timePeriodType",
+            "in": "query",
+            "description": " timePeriodType 1- day 2 - month 3 - year",          
+            "enum" :[
+              1,2,3
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/benificiary/list": {
       "get": {
         "deprecated": false,
@@ -2495,6 +2629,12 @@
             "description": "serviceLogo",
            
             "type": "file"
+          },
+          {
+            "name" : "serviceType",
+            "in" : "formData",
+            "description" : "serviceType 1- online service , 2 door step service",
+            "type" : "number"
           }
         ],
         "responses": {
