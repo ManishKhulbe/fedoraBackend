@@ -2287,7 +2287,7 @@
             "in": "formData",
             "description": "transactionAmount",
             "required": true,            
-            "type": "number"
+            "type": "integer"
           },
           {
             "name": "remark",
