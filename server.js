@@ -16,8 +16,9 @@ const config = require('./lib/config');
 
 
 //import cron scheduler
-// let crons = require('./lib/cronJobScheduler')
-// crons.deleteNotification('0 0 1 */1 *')
+let crons = require('./lib/cronJobScheduler')
+//set for 1 month
+crons.deleteNotifications('0 0 1 */1 *')
 
 
 
