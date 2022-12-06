@@ -2038,7 +2038,7 @@
       "delete": {
         "deprecated": true,
         "tags": ["Notification"],
-        "description": "notificationDetails",
+        "description": "notificationDetails ,[after how many timePeriodType you want to delete notification e.g - timePeriod = 2 , timePeriodType = 2 it means after 2 month you want to delete customer notification ]  By default it will run every month at 1",
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json"],
         "parameters": [
