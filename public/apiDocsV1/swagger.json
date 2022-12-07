@@ -608,6 +608,13 @@
             "type": "integer"
           },
           {
+            "name": "UserType",
+            "in": "query",
+            "description": "userType 1 -SuperAdmin ,2-normal User 3-Admin 4-Manager 5- viewer",
+            "required": false,
+            "type": "integer"
+          },
+          {
             "name": "search",
             "in": "query",
             "description": "search by name/mobileNo",
