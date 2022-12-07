@@ -2726,7 +2726,16 @@
             "description": " status 1-active 2 inactive",    
             "type": "number"
           },
-          
+          {
+            "name" : "serviceType",
+            "in": "query",
+            "description": "serviceType 1- online service , 2 door step service ",         
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          },
           {
             "name": "count",
             "in": "query",
@@ -2802,6 +2811,16 @@
             "in": "formData",
             "description": "serviceLogo",         
             "type": "file"
+          },
+          {
+            "name" : "serviceType",
+            "in": "formData",
+            "description": "serviceType 1- online service , 2 door step service ",         
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
           }
          
         ],
