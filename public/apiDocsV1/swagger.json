@@ -899,6 +899,46 @@
         ]
       }
     },
+    
+    "/user/commonValidateOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/validateOtp": {
       "post": {
         "deprecated": false,
