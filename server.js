@@ -34,6 +34,10 @@ config.dbConfig(config.cfg, (error) => {
     // load external modules
     const express = require('express');
     var responseTime = require('response-time');
+
+    //Reduse size of response
+    // const compression = require('compression')
+    // app.use(compression ())
     
     // init express app
     const app = express();
