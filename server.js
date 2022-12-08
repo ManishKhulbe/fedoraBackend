@@ -41,8 +41,10 @@ config.dbConfig(config.cfg, (error) => {
     
     //Reduse size of response
     const compression = require('compression')
-    app.use(compression ())
-    
+    app.use(compression({
+        level : 6
+    }))
+
     app.use(responseTime());
     
     // set the view engine to ejs
