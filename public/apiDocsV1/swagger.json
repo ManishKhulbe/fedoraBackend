@@ -1445,13 +1445,6 @@
             "type": "string"
           },
           {
-            "name": "accountType",
-            "in": "formData",
-            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
-            "required": false,            
-            "type": "number"
-          },
-          {
             "name": "accountInterestRate",
             "in": "formData",
             "description": "accountInterestRate",
@@ -1552,11 +1545,11 @@
             "type": "integer"
           },
           {
-            "name": "accountId",
+            "name": "accountType",
             "in": "formData",
-            "description": "accountId",
-            "required": true,
-            "type": "string"
+            "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "required" : true,
+            "type": "number"
           },
           {
             "name": "balance",
