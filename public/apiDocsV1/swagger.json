@@ -2313,14 +2313,14 @@
             "in": "formData",
             "description": " accountNumber",
             "required": true,            
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "receiverAccountNumber",
             "in": "formData",
             "description": " accountNumber",
             "required": true,            
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "transactionAmount",
