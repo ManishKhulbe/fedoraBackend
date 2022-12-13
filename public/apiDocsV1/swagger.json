@@ -395,7 +395,7 @@
           {
             "name": "membershipId",
             "in": "formData",
-            "description": "membershipId",
+            "description": "membershipId should be capital",
             "required": false,
             "type": "string"
           },
