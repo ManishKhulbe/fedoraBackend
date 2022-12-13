@@ -396,7 +396,7 @@
             "name": "membershipId",
             "in": "formData",
             "description": "membershipId",
-            "required": true,
+            "required": false,
             "type": "string"
           },
           {
@@ -430,7 +430,7 @@
             "name": "allotedStocks",
             "in": "formData",
             "description": "allotedStocks  to customer",
-            "required": true,
+            "required": false,
             "type": "integer"
           },
           {
