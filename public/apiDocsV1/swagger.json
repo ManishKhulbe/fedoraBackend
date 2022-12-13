@@ -436,6 +436,7 @@
           {
             "name": "userType",
             "in": "formData",
+            "required": true,
             "description": "userType 1 -SuperAdmin  , 2 - normal User by default it will be 2  3-Admin 4-Manager 5 viewer",
             "type": "integer"
           }
@@ -1798,6 +1799,44 @@
             "required": true,
             "type": "number"
            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/transaction/detailsById": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "detailsById",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "transactionId",
+            "in": "query",
+            "description": " transactionId",
+            "required": true,            
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
