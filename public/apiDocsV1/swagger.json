@@ -1543,7 +1543,7 @@
             "in": "formData",
             "description": "accountNumber",
             "required": true,
-            "type": "integer"
+            "type": "string"
           },
           {
             "name": "accountType",
