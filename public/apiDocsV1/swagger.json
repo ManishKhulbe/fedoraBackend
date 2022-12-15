@@ -1469,7 +1469,7 @@
           {
             "name": "accountType",
             "in": "formData",
-            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "description": " 1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
             "required": true,
             "type": "number"
           },
@@ -1514,7 +1514,7 @@
           {
             "name": "accountType",
             "in": "query",
-            "description": " 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "description": "  1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
             "required": false,            
             "type": "number"
           }
@@ -2825,6 +2825,64 @@
             "in" : "formData",
             "description" : "serviceType 1- online service , 2 door step service",
             "type" : "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/createOptions": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "optionName",
+            "in": "formData",
+            "description": "serviceName ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "serviceApplyForType",
+            "in": "formData",
+            "required": true,
+            "description": "serviceApplyForType  ",
+            "type": "integer"
+          },
+          {
+            "name": "optionLogo",
+            "in": "formData",
+            "description": "serviceLogo",
+            "type": "file"
           }
         ],
         "responses": {
