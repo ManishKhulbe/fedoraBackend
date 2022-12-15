@@ -439,6 +439,62 @@
             "required": true,
             "description": "userType 1 -SuperAdmin  , 2 - normal User by default it will be 2  3-Admin 4-Manager 5 viewer",
             "type": "integer"
+          },
+          {
+            "name": "addressLine1",
+            "in": "formData",
+            "required": true,
+            "description": "addressLine1",
+            "type": "string"
+          },
+          {
+            "name": "addressLine2",
+            "in": "formData",
+            "required": true,
+            "description": "addressLine2",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "required": true,
+            "description": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "required": true,
+            "description": "state",
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "in": "formData",
+            "required": true,
+            "description": "zipCode",
+            "type": "integer"
+          },
+          {
+            "name": "country",
+            "in": "formData",
+            "required": true,
+            "description": "country",
+            "type": "string"
+          },
+          {
+            "name": "DOB",
+            "in": "formData",
+            "required": true,
+            "description": "DOB timeStamp ",
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "required": true,
+            "description": "gender 1 Male, 2 Female, 3 Others ",
+            "type": "integer"
           }
           
         ],
@@ -563,6 +619,61 @@
             "description": "1 Active, 2 inActive",
             "required": false,
             "type": "integer"
+          },
+         {
+            "name": "addressType",
+            "in": "query",
+            "description": "0 - home, 1 - office , 2 - other",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "addressLine1",
+            "in": "query",
+            "description": "addressLine1",
+            "type": "string"
+          },
+          {
+            "name": "addressLine2",
+            "in": "query",
+          
+            "description": "addressLine2",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+          
+            "description": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "query",
+         
+            "description": "state",
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "in": "query",
+           
+            "description": "zipCode",
+            "type": "integer"
+          },
+          {
+            "name": "country",
+            "in": "query",
+          
+            "description": "country",
+            "type": "string"
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+         
+            "description": "DOB timeStamp ",
+            "type": "string"
           }
         ],
         "responses": {
