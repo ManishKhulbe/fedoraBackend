@@ -620,6 +620,58 @@
             "required": false,
             "type": "integer"
           },
+          {
+            "name": "DOB",
+            "in": "query",
+         
+            "description": "DOB timeStamp ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editUserAddress": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "addressId",
+            "in": "query",
+            "description": "addressId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
          {
             "name": "addressType",
             "in": "query",
@@ -667,13 +719,6 @@
           
             "description": "country",
             "type": "string"
-          },
-          {
-            "name": "DOB",
-            "in": "query",
-         
-            "description": "DOB timeStamp ",
-            "type": "string"
           }
         ],
         "responses": {
@@ -691,7 +736,6 @@
         ]
       }
     },
-    
     "/user/userList": {
       "get": {
         "tags": [
