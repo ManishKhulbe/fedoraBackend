@@ -2611,6 +2611,72 @@
             "in": "formData",
             "description": "1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",         
             "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          }
+     
+
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+
+    "/onlineServices/applyFedoraCash": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "description": "serviceId serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "accountNumber",         
+            "type": "string"
           }
         
         ],
@@ -2940,10 +3006,10 @@
             "type": "string"
           },
           {
-            "name": "serviceType",
+            "name": "serviceId",
             "in": "formData",
             "required": true,
-            "description": "serviceType ",
+            "description": "serviceId ",
             "type": "string"
           },
           {
@@ -2951,15 +3017,7 @@
             "in": "formData",
             "description": "serviceLogo",
             "type": "file"
-          },
-          {
-            "name": "formHeaders",
-            "in": "formData",
-            "description": "formHeaders array of string ",
-            "type": "string" 
           }
-
-         
         ],
         "responses": {
           "200": {
