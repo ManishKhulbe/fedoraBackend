@@ -1732,11 +1732,11 @@
             "type": "string"
           },
           {
-            "name": "accountType",
+            "name": "accountId",
             "in": "formData",
             "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
             "required" : true,
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "balance",
@@ -2898,7 +2898,7 @@
           {
             "name" : "serviceType",
             "in" : "formData",
-            "description" : "serviceType 1- online service , 2 door step service",
+            "description" : "serviceType 1- online service , 2 door step service , 3 fedora cash",
             "type" : "number"
           }
         ],
@@ -2940,25 +2940,26 @@
             "type": "string"
           },
           {
-            "name": "serviceId",
+            "name": "serviceType",
             "in": "formData",
             "required": true,
-            "description": "serviceId ",
+            "description": "serviceType ",
             "type": "string"
-          },
-          {
-            "name": "serviceApplyForType",
-            "in": "formData",
-            "required": true,
-            "description": "serviceApplyForType  ",
-            "type": "integer"
           },
           {
             "name": "optionLogo",
             "in": "formData",
             "description": "serviceLogo",
             "type": "file"
+          },
+          {
+            "name": "formHeaders",
+            "in": "formData",
+            "description": "formHeaders array of string ",
+            "type": "string" 
           }
+
+         
         ],
         "responses": {
           "200": {
@@ -3005,10 +3006,11 @@
           {
             "name" : "serviceType",
             "in": "query",
-            "description": "serviceType 1- online service , 2 door step service ",         
+            "description": "serviceType 1- online service , 2 door step service , 3 fedora cash ",         
             "enum": [
               1,
-              2
+              2,
+              3
             ],
             "type": "integer"
           },
