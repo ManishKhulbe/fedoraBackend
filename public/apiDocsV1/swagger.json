@@ -2607,20 +2607,42 @@
             "type": "string"
           },
           {
-            "name": "accountType",
+            "name" : "amount",
+            "in" : "formData",
+            "description" : "amount",
+            "type" : "number"
+          },
+          {
+            "name": "orderDate",
             "in": "formData",
-            "description": "1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",         
+            "description": "orderDate",         
             "type": "string"
           },
           {
-            "name": "amount",
-            "in": "formData",
-            "description": "Remark",         
-            "type": "string"
+              "name" :"timeSlot",
+              "in" : "formData",
+              "description" : "timeSlot  1 - 9am to 1pm ,  2-  2 pm to 5pm  ",
+              "type" : "integer",
+              "enum": [1,2]
+          },
+          {
+            "name" :"addressId",
+            "in" : "formData",
+            "description" : "addressId",
+            "type" : "string"
+          },
+          {
+            "name" :"accountId",
+            "in" : "formData",
+            "description" : "accountId",
+            "type" : "string"
+          },
+          {
+            "name" :"duration",
+            "in" : "formData",
+            "description" : "duration",
+            "type" : "string"
           }
-     
-
-        
         ],
         "responses": {
           "200": {
@@ -2667,18 +2689,17 @@
             "type": "string"
           },
           {
-            "name": "amount",
-            "in": "formData",
-            "description": "Remark",         
-            "type": "string"
+            "name" : "amount",
+            "in" : "formData",
+            "description" : "amount",
+            "type" : "number"
           },
           {
-            "name": "accountNumber",
-            "in": "formData",
-            "description": "accountNumber",         
-            "type": "string"
+            "name" : "accountNumber",
+            "in" : "formData",
+            "description" : "accountNumber",
+            "type" : "string"
           }
-        
         ],
         "responses": {
           "200": {
@@ -2711,10 +2732,10 @@
             "type": "string"
           },
           {
-            "name": "serviceId",
+            "name": "serviceType",
             "in": "query",
-            "description": "serviceId",          
-            "type": "string"
+            "description": "serviceType 1- online service , 2 door step service , 3 fedora cash",          
+            "type": "integer"
           },
           {
             "name": "status",
@@ -3017,6 +3038,70 @@
             "in": "formData",
             "description": "serviceLogo",
             "type": "file"
+          },
+          {
+            "name" : "optionAction",
+            "in" : "formData",
+            "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
+            "type" : "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+
+    "/service/editOptionAction": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "serviceId",
+            "in": "query",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "optionId",
+            "in": "query",
+            "required": true,
+            "description": "optionId ",
+            "type": "string"
+          },
+          {
+            "name": "optionName",
+            "in": "query",
+            "description": "optionName",
+            "type": "string"
+          },
+          {
+            "name" : "optionAction",
+            "in": "query",
+            "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
+            "type" : "number"
           }
         ],
         "responses": {
