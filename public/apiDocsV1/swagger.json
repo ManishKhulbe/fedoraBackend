@@ -2821,6 +2821,70 @@
         ]
       }
     },
+ 
+    "/onlineServices/editByCustomer": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "onlineServiceId",
+            "in": "formData",
+            "description": " onlineServiceId",  
+            "required": true,        
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Remark 0-pending 1- fulfiled 2-rejected",         
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "remark  ",
+            "type": "string"
+          } , 
+          {
+            "name": "orderDate",
+            "in": "formData",
+            "description": "orderDate  ",
+            "type": "string"
+          },
+          {
+            "name": "timeSlot",
+            "in": "formData",
+            "description": "timeSlot 1 - 9am to 1pm , 2- 2 pm to 5pm   ",
+            "type": "integer"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/onlineServices/edit": {
       "put": {
         "deprecated": false,
