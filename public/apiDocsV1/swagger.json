@@ -2642,6 +2642,12 @@
             "in" : "formData",
             "description" : "duration",
             "type" : "string"
+          },
+          {
+            "name" :"optionActionType",
+            "in" : "formData",
+            "description" : "optionActionType",
+            "type" : "integer"
           }
         ],
         "responses": {
