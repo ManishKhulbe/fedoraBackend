@@ -3207,7 +3207,52 @@
         ]
       }
     },
-
+    
+    "/service/deleteOptionAction": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "serviceId",
+            "in": "query",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "optionId",
+            "in": "query",
+            "required": true,
+            "description": "optionId ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/service/editOptionAction": {
       "put": {
         "deprecated": false,
