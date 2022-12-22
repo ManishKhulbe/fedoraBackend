@@ -3190,6 +3190,12 @@
             "in" : "formData",
             "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
             "type" : "number"
+          },
+          {
+            "name" : "optionType",
+            "in" : "formData",
+            "description" : "optionAction 1-create/initiate new  , 2 reschedule/cancel , 3 - history",
+            "type" : "number"
           }
         ],
         "responses": {
