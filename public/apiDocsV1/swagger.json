@@ -2681,6 +2681,65 @@
         ]
       }
     },
+    "/customerAccount/fundTransferToOtherBank ": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senderAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "otherBankDetailsId",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "integer"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",    
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/onlineServices/apply": {
       "post": {
         "deprecated": false,
