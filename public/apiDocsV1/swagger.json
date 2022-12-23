@@ -513,7 +513,110 @@
         ]
       }
     },
-
+    "/user/addOtherBankDetails": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "accountNumber",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "IFSCcode",
+            "in": "formData",
+            "description": "IFSCcode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "bankName",
+            "in": "formData",
+            "description": "bankName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/deleteOtherBankDetails": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "otherBankDetailsId",
+            "in": "formData",
+            "description": "otherBankDetailsId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/updateDeviceToken": {
       "put": {
         "deprecated": false,
