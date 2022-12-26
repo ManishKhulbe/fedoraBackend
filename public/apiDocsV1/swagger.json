@@ -2076,17 +2076,39 @@
            },
            {
             "name": "beneficiaryAccountNumber",
-            "in": "query",
+            "in": "formData",
             "description": "receiverAccountNumber",
             "required": true,
             "type": "number"
            },
            {
             "name": "amount",
-            "in": "query",
+            "in": "formData",
             "description": "amount",
             "required": true,
             "type": "number"
+           },
+           {
+            "name": "remark",
+            "in": "formData",
+            "description": "remarks",
+            "type": "string"
+           },
+           {
+            "name": "transactionType",
+            "in": "formData",
+            "description": "transactionType 1. credited , 2. debited",
+            "required": true,
+            "enum" :[
+              1,2
+            ]
+           },
+           {
+            "name" : "date",
+            "in": "formData",
+            "description" : "date",
+            "required" : true,
+            "type" : "string"
            }
         ],
         "responses": {
