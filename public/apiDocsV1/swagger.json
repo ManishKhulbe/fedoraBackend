@@ -2104,6 +2104,52 @@
         ]
       }
     },
+    "/transaction/editTransaction": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "detailsById",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "transactionId",
+            "in": "formData",
+            "description": " transactionId",
+            "required": true,            
+            "type": "string"
+          }, 
+          {
+            "name" : "status",
+            "in": "formData",
+            "description" : "status 0 initial , 1 pending , 2. complete , 3 failed",
+            "required" : true,
+            "type" : "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
     "/transaction/detailsById": {
       "get": {
         "deprecated": false,
