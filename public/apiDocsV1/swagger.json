@@ -94,6 +94,14 @@
         "description": "Find out more about our store",
         "url": ""
       }
+    },
+    {
+      "name": "Grievances",
+      "description": "Operations about Grievances",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -1582,6 +1590,44 @@
         ]
       }
     },
+    "/user/validateMPin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "mPin",
+            "in": "formData",
+             "description": "mPin",
+            "required": true,
+             "type": "integer"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
      "/user/createMpin": {
      "post": {
      "deprecated": false,
@@ -2689,6 +2735,66 @@
         ]
       }
     },
+    "/customerAccount/initiateFundTransfer": {
+      "post": {
+        "deprecated": true,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senderAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "receiverAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "integer"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",
+                
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/customerAccount/fundTransfer": {
       "post": {
         "deprecated": false,
@@ -3304,6 +3410,202 @@
             "enum": [
               1,
               2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Grievances ",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "description",
+            "in": "formData",
+            "description": "description",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Grievances",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "search",
+            "in": "query",
+            "description": "search by name and mobile number ",    
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "date",    
+            "type": "string"
+          },
+          {
+            "name" : "status",
+            "in": "query",
+            "description": "status 1-pending ,2 - watched , 3 - actionTaken ",         
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token of admin ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "grievanceId",
+            "in": "formData",
+            "description": "serviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": " serviceStatus",          
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "deleteService",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "grievanceId",
+            "in": "query",
+            "description": " serviceId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete",
+            "enum": [
+              1
             ],
             "type": "integer"
           }
