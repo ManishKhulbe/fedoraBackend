@@ -3808,35 +3808,41 @@
            },
           {
             "name": "serviceId",
-            "in": "query",
+            "in": "formData",
             "required": true,
             "description": "serviceId ",
             "type": "string"
           },
           {
             "name": "optionId",
-            "in": "query",
+            "in": "formData",
             "required": true,
             "description": "optionId ",
             "type": "string"
           },
           {
             "name": "optionName",
-            "in": "query",
+            "in": "formData",
             "description": "optionName",
             "type": "string"
           },
           {
             "name" : "optionAction",
-            "in": "query",
+            "in": "formData",
             "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
             "type" : "number"
           },
           {
             "name" : "optionType",
-            "in" :  "query",
+            "in" :  "formData",
             "description" : "optionAction 1-create/initiate new  , 2 reschedule/cancel , 3 - history",
             "type" : "number"
+          },
+          {
+            "name": "optionLogo",
+            "in": "formData",
+            "description": "optionLogo",
+            "type": "file"
           }
         ],
         "responses": {
