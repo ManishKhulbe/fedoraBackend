@@ -2737,7 +2737,7 @@
     },
     "/customerAccount/initiateFundTransfer": {
       "post": {
-        "deprecated": true,
+        "deprecated": false,
         "tags": ["Customer Account"],
         "description": "Customer Account",
         "consumes": ["application/x-www-form-urlencoded"],
@@ -2778,6 +2778,46 @@
                 
             "type": "string"
           }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/validateFundTransferOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": " otp",
+            "required": true,            
+            "type": "integer"
+          }
+          
         
         ],
         "responses": {
