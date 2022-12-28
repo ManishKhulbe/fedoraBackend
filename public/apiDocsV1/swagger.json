@@ -597,14 +597,14 @@
           },
           {
             "name": "customerId",
-            "in": "formData",
+            "in": "query",
             "description": "customerId",
             "required": true,
             "type": "string"
           },
           {
             "name": "otherBankDetailsId",
-            "in": "formData",
+            "in": "query",
             "description": "otherBankDetailsId",
             "required": true,
             "type": "string"
