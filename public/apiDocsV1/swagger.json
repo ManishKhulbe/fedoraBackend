@@ -209,6 +209,49 @@
         ]
       }
     },
+    "/user/setTxnLimit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "odaLimit",
+            "in": "query",
+            "description": "userId",
+            "type": "number"
+          },
+          {
+            "name": "laaLimit",
+            "in": "query",
+            "description": "userId",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/getUserBeneficiary": {
       "get": {
         "deprecated": false,
