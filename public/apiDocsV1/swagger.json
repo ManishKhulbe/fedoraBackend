@@ -401,17 +401,16 @@
             "type": "string"
           },
           {
-            "name": "membershipId",
-            "in": "formData",
-            "description": "membershipId should be capital",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "name",
             "in": "formData",
             "description": "name",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name" : "panCardNo",
+            "in": "formData",
+            "description": "panCardNo",
             "type": "string"
           },
           {
@@ -1874,16 +1873,9 @@
             "type": "string"
           },
           {
-            "name": "accountNumber",
-            "in": "formData",
-            "description": "accountNumber",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "accountId",
             "in": "formData",
-            "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "description": " 1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
             "required" : true,
             "type": "string"
           },
