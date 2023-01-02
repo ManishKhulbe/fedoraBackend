@@ -1892,7 +1892,15 @@
             "description": "accountCreated timstamp in miliseconds",
             "required": false,
             "type": "integer"
+          },
+          {
+            "name"  : "tenure",
+            "in": "formData",
+            "description": "tenure",
+            "required": false,
+            "type": "integer"
           }
+          
         ],
         "responses": {
           "200": {
@@ -3345,12 +3353,6 @@
             "type": "string"
           },
           {
-            "name": "serviceId",
-            "in": "formData",
-            "description": " serviceId",          
-            "type": "string"
-          },
-          {
             "name": "onlineServiceId",
             "in": "formData",
             "description": " onlineServiceId",  
@@ -3358,9 +3360,15 @@
             "type": "string"
           },
           {
+            "name": "serviceId",
+            "in": "formData",
+            "description": " serviceId",          
+            "type": "string"
+          },
+          {
             "name": "status",
             "in": "formData",
-            "description": "Remark 0-pending 1- fulfiled 2-rejected",         
+            "description": "0 -accepted 1-in process 2-completed 4 rejected",         
             "type": "number"
           },
           {
