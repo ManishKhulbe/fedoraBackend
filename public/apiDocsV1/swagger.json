@@ -1937,6 +1937,14 @@
             "type": "integer"
           },
           {
+            "name"  : "allotedAmount",
+            "in": "formData",
+            "description": "allotedAmount",
+            "required": false,
+            "type": "integer"
+          },
+          
+          {
             "name"  : "tenure",
             "in": "formData",
             "description": "tenure",
