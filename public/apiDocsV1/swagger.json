@@ -2530,6 +2530,44 @@
         ]
       }
     },
+    
+    "/notification/seenNotification": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "notificationDetails",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "notificationIdArray",
+            "in": "formData",
+            "description": "['id' ....]",          
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/notification/notificationDetails": {
       "get": {
         "deprecated": false,
