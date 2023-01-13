@@ -2739,6 +2739,16 @@
               2
             ],
             "type": "integer"
+          },
+          {
+            "name": "accountStatus",
+            "in": "query",
+            "description": "1-active 2-inactive",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
           }
         ],
         "responses": {
