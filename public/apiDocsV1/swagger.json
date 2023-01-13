@@ -2075,6 +2075,13 @@
             "type": "number"
           },
           {
+            "name": "accountStatus",
+            "in": "query",
+            "description": "1-active , 2 inactive",
+            "type": "number"
+          },
+          
+          {
             "name": "pageNo",
             "in": "query",
             "description": "pageNo",
