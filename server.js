@@ -38,7 +38,7 @@ config.dbConfig(config.cfg, (error) => {
   // init express app
   const app = express();
 
-  //Reduse size of response
+  //Reduce size of response
   const compression = require("compression");
   app.use(
     compression({
