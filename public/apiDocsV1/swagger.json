@@ -1,0 +1,4215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "fedora-backend",
+    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "contact": {
+      "email": ""
+    },
+    "version": "1.0.0",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Transaction",
+      "description": "Operations about transactions",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Admin",
+      "description": "Admin",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Account",
+      "description": "Operations about Accounts",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Customer Account",
+      "description": "Operations about Customer Account",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Online Services",
+      "description": "Operations about Online Services",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Beneficiary",
+      "description": "Operations about Beneficiary",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Service",
+      "description": "Operations about Service",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Dashboard",
+      "description": "Operations about Dashboard",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Notification",
+      "description": "Operations about Notification",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    },
+    {
+      "name": "Grievances",
+      "description": "Operations about Grievances",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": ""
+      }
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": ["application/json"],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "accountNumber of your bank account",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "membershipId",
+            "in": "formData",
+            "description": "membershipId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+           
+            "type": "string"
+          },
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/userDetails": {
+      "get": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/setTxnLimit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "odaLimit",
+            "in": "query",
+            "description": "userId",
+            "type": "number"
+          },
+          {
+            "name": "laaLimit",
+            "in": "query",
+            "description": "userId",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/getUserBeneficiary": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Beneficiary"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/deleteBeneficiary": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Beneficiary"],
+        "description": "deleteBeneficiary",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "beneficiaryId",
+            "in": "query",
+            "description": "beneficiaryId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/forgotPassword": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/resetPassword": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/addUser": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name" : "panCardNo",
+            "in": "formData",
+            "description": "panCardNo",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password",
+            "type": "string"
+          },
+          
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "allotedStocks",
+            "in": "formData",
+            "description": "allotedStocks  to customer",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "userType",
+            "in": "formData",
+            "required": true,
+            "description": "userType 1 -SuperAdmin  , 2 - normal User by default it will be 2  3-Admin 4-Manager 5 viewer",
+            "type": "integer"
+          },
+          {
+            "name": "addressLine1",
+            "in": "formData",
+            "required": true,
+            "description": "addressLine1",
+            "type": "string"
+          },
+          {
+            "name": "addressLine2",
+            "in": "formData",
+            "required": true,
+            "description": "addressLine2",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "required": true,
+            "description": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "required": true,
+            "description": "state",
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "in": "formData",
+            "required": true,
+            "description": "zipCode",
+            "type": "integer"
+          },
+          {
+            "name": "country",
+            "in": "formData",
+            "required": true,
+            "description": "country",
+            "type": "string"
+          },
+          {
+            "name": "dob",
+            "in": "formData",
+            "required": true,
+            "description": "DOB timeStamp ",
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "required": true,
+            "description": "gender 1 Male, 2 Female, 3 Others ",
+            "type": "integer"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/addOtherBankDetails": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "in": "formData",
+            "description": "accountNumber",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "IFSCcode",
+            "in": "formData",
+            "description": "IFSCcode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "bankName",
+            "in": "formData",
+            "description": "bankName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/deleteOtherBankDetails": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "otherBankDetailsId",
+            "in": "query",
+            "description": "otherBankDetailsId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/updateDeviceToken": {
+      "put": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token of user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "deviceToken",
+            "in": "formData",
+            "description": "deviceToken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+      "responses": {
+        "200": {
+          "description": "Successfully"
+        },
+        "401": {
+          "description": "Unauthorized"
+        }
+      },
+      "security": [
+        {
+          "basicAuth": ["Username: ", "Password: "]
+        }
+      ]
+    }
+  },
+    "/user/editUser": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "membershipId",
+            "in": "query",
+            "description": "membershipId",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name",
+        
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email",
+            "type": "string"
+          },
+          {
+            "name": "mobileNo",
+            "in": "query",
+            "description": "your registered mobileNo",
+          
+            "type": "integer"
+          },
+          {
+            "name": "allotedStocks",
+            "in": "query",
+            "description": "allotedStocks  to customer",
+        
+            "type": "integer"
+          },
+          {
+            "name": "userType",
+            "in": "query",
+            "description": "userType 1 -Admin  , 2 - normal User",
+            "type": "integer"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "1 Active, 2 inActive",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "DOB",
+            "in": "query",
+         
+            "description": "DOB timeStamp ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editUserAddress": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "addressId",
+            "in": "query",
+            "description": "addressId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+         {
+            "name": "addressType",
+            "in": "query",
+            "description": "0 - home, 1 - office , 2 - other",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "addressLine1",
+            "in": "query",
+            "description": "addressLine1",
+            "type": "string"
+          },
+          {
+            "name": "addressLine2",
+            "in": "query",
+          
+            "description": "addressLine2",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+          
+            "description": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "query",
+         
+            "description": "state",
+            "type": "string"
+          },
+          {
+            "name": "zipCode",
+            "in": "query",
+           
+            "description": "zipCode",
+            "type": "integer"
+          },
+          {
+            "name": "country",
+            "in": "query",
+          
+            "description": "country",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/userList": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "Employee list",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "1 Active, 2 inActive",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "UserType",
+            "in": "query",
+            "description": "userType 1 -SuperAdmin ,2-normal User 3-Admin 4-Manager 5- viewer",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "search by name/mobileNo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "page No",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sort type",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sort field",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": [
+              "username:",
+              "Password:"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+             "required": true,
+             "type": "string"
+           },
+          {
+            "name": "mPin",
+            "in": "formData",
+            "description": "MPIN",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/firstLogin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "formData",
+             "description": "mobileNo",
+             "required": true,
+             "type": "integer"
+           },
+          {
+            "name": "mPin",
+            "in": "formData",
+            "description": "MPIN",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/deleteUser": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "description": " customerId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/loginAsAdmin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editProfileImage": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "profileImage",
+            "in": "formData",
+            "description": "profileImage",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/forgetPin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/user/commonValidateOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/validateOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/validateForgetPinOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "mobileNo",
+            "in": "formData",
+            "description": "your registered mobileNo",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/validateForgetPassOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Admin"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email of user's",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": "OTP",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/getAdminDashBoard": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/getUserDashBoard": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getUserDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/totalNoOfAccount": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/totalNoOfAccountByType": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/pendingOnlineServices": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/addSharePrice": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "currentValue",
+            "in": "formData",
+            "description": "currentValue",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editSharePrice": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "shareId",
+            "in": "formData",
+             "description": "shareId",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "currentValue",
+            "in": "formData",
+            "description": "currentValue",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/getSharePrice": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/validateMPin": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "mPin",
+            "in": "formData",
+             "description": "mPin",
+            "required": true,
+             "type": "integer"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+     "/user/createMpin": {
+     "post": {
+     "deprecated": false,
+      "tags": [
+          "User"
+          ],
+         "description": "Login",
+         "consumes": [
+           "application/x-www-form-urlencoded"
+         ],
+         "produces": [
+           "application/json"
+         ],
+         "parameters": [
+           {
+             "name": "accessToken",
+             "in": "header",
+              "description": "access token",
+             "required": true,
+              "type": "string"
+            },
+            {
+              "name": "mPin",
+              "in": "formData",
+              "description": "MPIN",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+           "200": {
+              "description": "Successfully"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+         },
+          "security": [
+            {
+             "basicAuth": [
+                "Username: ",
+               "Password: "
+              ]
+           }
+          ]
+        }
+     },
+     "/account/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": " 1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "accountInterestRate",
+            "in": "formData",
+            "description": "accountInterestRate",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/account/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "query",
+            "description": "  1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
+            "required": false,            
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/account/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": " accountId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "accountInterestRate",
+            "in": "formData",
+            "description": "accountInterestRate",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/account/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "description": " accountId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": " 1 SBA, 2-RDA , 3-TDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FFA",
+            "required" : true,
+            "type": "string"
+          },
+          {
+            "name": "balance",
+            "in": "formData",
+            "description": "accountId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name"  : "accountCreated",
+            "in": "formData",
+            "description": "accountCreated timstamp in miliseconds",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name"  : "allotedAmount",
+            "in": "formData",
+            "description": "allotedAmount",
+            "required": false,
+            "type": "integer"
+          },
+          
+          {
+            "name"  : "tenure",
+            "in": "formData",
+            "description": "tenure",
+            "required": false,
+            "type": "integer"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/calculateInterest": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "accountType",
+            "in": "formData",
+            "description": "accountType",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "timePeriod",
+            "in": "formData",
+            "description": "timePeriod",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "timePeriodType",
+            "in": "formData",
+            "description": "timePeriodType 1- days, 2- months, 3- years",
+            "required": true,
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "search",
+            "in": "query",
+            "description": "search by customer name  ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchYear",
+            "in": "query",
+            "description": "enter a valid year",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchMonth",
+            "in": "query",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchDay",
+            "in": "query",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "AccountType",
+            "in": "query",
+            "description": "// 1 SBA, 2-RDA , 3-FDA , 4-LAA , 5-ODA , 6-BDA Business Deposit Account , 7-FRDA Flexi RD Account",
+            "type": "number"
+          },
+          {
+            "name": "accountStatus",
+            "in": "query",
+            "description": "1-active , 2 inactive",
+            "type": "number"
+          },
+          
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/getReceiverDetails": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "receiverAccountNumber",
+            "in": "query",
+            "description": "receiverAccountNumber",
+            "required": true,
+            "type": "number"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/addBalance": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "beneficiaryAccountNumber",
+            "in": "formData",
+            "description": "receiverAccountNumber",
+            "required": true,
+            "type": "number"
+           },
+           {
+            "name": "amount",
+            "in": "formData",
+            "description": "amount",
+            "required": true,
+            "type": "number"
+           },
+           {
+            "name": "remark",
+            "in": "formData",
+            "description": "remarks",
+            "type": "string"
+           },
+           {
+            "name": "transactionType",
+            "in": "formData",
+            "description": "transactionType 1. credited , 2. debited",
+            "required": true,
+            "enum" :[
+              1,2
+            ]
+           },
+           {
+            "name" : "date",
+            "in": "formData",
+            "description" : "date",
+            "required" : true,
+            "type" : "string"
+           }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/transaction/editTransaction": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "detailsById",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "transactionId",
+            "in": "formData",
+            "description": " transactionId",
+            "required": true,            
+            "type": "string"
+          }, 
+          {
+            "name" : "status",
+            "in": "formData",
+            "description" : "status 0 initial , 1 pending , 2. complete , 3 failed",
+            "required" : true,
+            "type" : "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/transaction/detailsById": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "detailsById",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "transactionId",
+            "in": "query",
+            "description": " transactionId",
+            "required": true,            
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/transaction/listByUser": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "accountNumber",
+            "in": "query",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/transaction/listByAdmin": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "search",
+            "in": "query",
+            "description": " search by name and mobile number ",
+                     
+            "type": "string"
+          },
+          {
+            "name": "searchDate",
+            "in": "query",
+            "description": " name",
+                     
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": " name",    
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": " name", 
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "query",
+            "description": " accountType", 
+            "type": "number"
+          },
+             {
+              "name": "senderAccountType",
+              "in": "query",
+              "description": " name", 
+              "type": "number"
+            },
+            {
+              "name": "receiverAccountType",
+              "in": "query",
+              "description": " receiverAccountType",
+              "type": "number"
+            },
+          {
+            "name": "searchYear",
+            "in": "query",
+            "description": " searchYear",
+                       
+            "type": "number"
+          },
+          {
+            "name": "searchMonth",
+            "in": "query",
+            "description": " searchMonth",
+                      
+            "type": "number"
+          },
+          {
+            "name": "searchDay",
+            "in": "query",
+            "description": " searchDay",
+                     
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": " status",
+                     
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+
+    "/notification/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "Notification",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/notification/seenNotification": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "notificationDetails",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "notificationIdArray",
+            "in": "formData",
+            "description": "['id' ....]",          
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/notification/notificationDetails": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Notification"],
+        "description": "notificationDetails",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "notificationId",
+            "in": "query",
+            "description": " notificationId",          
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/notification/deleteNotificationWithCron": {
+      "delete": {
+        "deprecated": true,
+        "tags": ["Notification"],
+        "description": "notificationDetails ,[after how many timePeriodType you want to delete notification e.g - timePeriod = 2 , timePeriodType = 2 it means after 2 month you want to delete customer notification ]  By default it will run every month at 1",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "timePeriod",
+            "in": "query",
+            "description": " timePeriod",          
+            "type": "number"
+          },
+          {
+            "name": "timePeriodType",
+            "in": "query",
+            "description": " timePeriodType 1- day 2 - month 3 - year",          
+            "enum" :[
+              1,2,3
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/benificiary/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Benificiary"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "senderUserID",
+            "in": "query",
+            "description": " senderUserID",
+                      
+            "type": "string"
+          },
+          {
+            "name": "receiverUserID",
+            "in": "query",
+            "description": " receiverUserID",
+              
+            "type": "string"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/customerAccount/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": " customerAccountId",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          },
+          {
+            "name": "accountStatus",
+            "in": "query",
+            "description": "1-active 2-inactive",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/listByCustomer": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/checkBalance": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": "customerAccountId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/initiateFundTransfer": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senderAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "receiverAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "integer"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",
+                
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/validateFundTransferOtp": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "otp",
+            "in": "formData",
+            "description": " otp",
+            "required": true,            
+            "type": "integer"
+          }
+          
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/fundTransfer": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senderAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "receiverAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "integer"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",
+                
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/customerAccount/fundTransferToOtherBank ": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "senderAccountNumber",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "otherBankDetailsId",
+            "in": "formData",
+            "description": " accountNumber",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "transactionAmount",
+            "in": "formData",
+            "description": "transactionAmount",
+            "required": true,            
+            "type": "integer"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",    
+            "type": "string"
+          }
+        
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/apply": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "description": "serviceId serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name" : "amount",
+            "in" : "formData",
+            "description" : "amount",
+            "type" : "number"
+          },
+          {
+            "name": "orderDate",
+            "in": "formData",
+            "description": "orderDate",         
+            "type": "string"
+          },
+          {
+              "name" :"timeSlot",
+              "in" : "formData",
+              "description" : "timeSlot  1 - 9am to 1pm ,  2-  2 pm to 5pm  ",
+              "type" : "integer",
+              "enum": [1,2]
+          },
+          {
+            "name" :"addressId",
+            "in" : "formData",
+            "description" : "addressId",
+            "type" : "string"
+          },
+          {
+            "name" :"accountId",
+            "in" : "formData",
+            "description" : "accountId",
+            "type" : "string"
+          },
+          {
+            "name" :"duration",
+            "in" : "formData",
+            "description" : "duration",
+            "type" : "string"
+          },
+          {
+            "name" :"optionActionType",
+            "in" : "formData",
+            "description" : "optionActionType",
+            "type" : "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+
+    "/onlineServices/applyFedoraCash": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "description": "serviceId serviceApplyFor 1- new account opening , 2- apply for loan , 3- apply for locker ",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name" : "amount",
+            "in" : "formData",
+            "description" : "amount",
+            "type" : "number"
+          },
+          {
+            "name" : "accountNumber",
+            "in" : "formData",
+            "description" : "accountNumber",
+            "type" : "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "serviceType 1- online service , 2 door step service , 3 fedora cash",          
+            "type": "integer"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "search by customer name  ",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "searchYear",
+            "in": "query",
+            "description": "enter a valid year",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchMonth",
+            "in": "query",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "searchDay",
+            "in": "query",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/listByCustomer": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "serviceType 1- online service , 2 door step service , 3 fedora cash",          
+            "type": "integer"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Remark",         
+            "type": "string"
+          },
+          {
+            "name": "optionActionType",
+            "in": "query",
+            "description": "optionActionType",         
+            "type": "integer"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/editByCustomer": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "onlineServiceId",
+            "in": "formData",
+            "description": " onlineServiceId",  
+            "required": true,        
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "Remark 0-pending 1- fulfiled 2-rejected",         
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "remark  ",
+            "type": "string"
+          } , 
+          {
+            "name": "orderDate",
+            "in": "formData",
+            "description": "orderDate  ",
+            "type": "string"
+          },
+          {
+            "name": "timeSlot",
+            "in": "formData",
+            "description": "timeSlot 1 - 9am to 1pm , 2- 2 pm to 5pm   ",
+            "type": "integer"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "onlineServiceId",
+            "in": "formData",
+            "description": " onlineServiceId",  
+            "required": true,        
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "description": " serviceId",          
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": "0 -accepted 1-in process 2-completed 4 rejected",         
+            "type": "number"
+          },
+          {
+            "name": "remark",
+            "in": "formData",
+            "description": "remark  ",
+            "type": "string"
+          },
+          {
+            "name": "reply",
+            "in": "formData",
+            "description": "reply",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "customerId",
+            "in": "formData",
+            "description": "enter a valid month",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "formData",
+            "description": "enter a valid day",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fulfilDate",
+            "in": "formData",
+            "description": "timestamp ",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/onlineServices/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Online Services"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "onlineServicesId",
+            "in": "query",
+            "description": " onlineServicesId",
+            "required": true,         
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Grievances ",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "description",
+            "in": "formData",
+            "description": "description",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Grievances",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "search",
+            "in": "query",
+            "description": "search by name and mobile number ",    
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "date",    
+            "type": "string"
+          },
+          {
+            "name" : "status",
+            "in": "query",
+            "description": "status 1-pending ,2 - watched , 3 - actionTaken ",         
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token of admin ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "grievanceId",
+            "in": "formData",
+            "description": "serviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": " serviceStatus",          
+            "type": "number"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/grievances/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Grievances"],
+        "description": "deleteService",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "grievanceId",
+            "in": "query",
+            "description": " serviceId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete",
+            "enum": [
+              1
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/create": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "serviceName",
+            "in": "formData",
+            "description": "serviceName ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "description",
+            "type": "string"
+          },
+          {
+            "name": "serviceLogo",
+            "in": "formData",
+            "description": "serviceLogo",
+           
+            "type": "file"
+          },
+          {
+            "name" : "serviceType",
+            "in" : "formData",
+            "description" : "serviceType 1- online service , 2 door step service , 3 fedora cash",
+            "type" : "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/createOptions": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "optionName",
+            "in": "formData",
+            "description": "serviceName ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "optionLogo",
+            "in": "formData",
+            "description": "serviceLogo",
+            "type": "file"
+          },
+          {
+            "name" : "optionAction",
+            "in" : "formData",
+            "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
+            "type" : "number"
+          },
+          {
+            "name" : "optionType",
+            "in" : "formData",
+            "description" : "optionAction 1-create/initiate new  , 2 reschedule/cancel , 3 - history",
+            "type" : "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    
+    "/service/deleteOptionAction": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "serviceId",
+            "in": "query",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "optionId",
+            "in": "query",
+            "required": true,
+            "description": "optionId ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/editOptionAction": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "required": true,
+            "description": "serviceId ",
+            "type": "string"
+          },
+          {
+            "name": "optionId",
+            "in": "formData",
+            "required": true,
+            "description": "optionId ",
+            "type": "string"
+          },
+          {
+            "name": "optionName",
+            "in": "formData",
+            "description": "optionName",
+            "type": "string"
+          },
+          {
+            "name" : "optionAction",
+            "in": "formData",
+            "description" : "optionAction 1-Cash Delivery , 2 Cash/chq Pickup ",
+            "type" : "number"
+          },
+          {
+            "name" : "optionType",
+            "in" :  "formData",
+            "description" : "optionAction 1-create/initiate new  , 2 reschedule/cancel , 3 - history",
+            "type" : "number"
+          },
+          {
+            "name": "optionLogo",
+            "in": "formData",
+            "description": "optionLogo",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/list": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "serviceName",
+            "in": "query",
+            "description": " serviceName",    
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": " status 1-active 2 inactive",    
+            "type": "number"
+          },
+          {
+            "name" : "serviceType",
+            "in": "query",
+            "description": "serviceType 1- online service , 2 door step service , 3 fedora cash ",         
+            "enum": [
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": " count",          
+            "type": "number"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": " pageNo",          
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/edit": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "Customer Account",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "access token of admin ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "formData",
+            "description": "serviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceName",
+            "in": "formData",
+            "description": "serviceName ",
+          
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "description": " serviceStatus",          
+            "type": "number"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": " description",  
+            "required": false,        
+            "type": "string"
+          },
+          {
+            "name": "serviceLogo",
+            "in": "formData",
+            "description": "serviceLogo",         
+            "type": "file"
+          },
+          {
+            "name" : "serviceType",
+            "in": "formData",
+            "description": "serviceType 1- online service , 2 door step service ",         
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+         
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/service/deleteService": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Service"],
+        "description": "deleteService",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "serviceId",
+            "in": "query",
+            "description": " serviceId",
+            "required": false,            
+            "type": "string"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "description": "1-soft delete, 2= delete",
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    }
+    
+    
+
+
+
+
+
+
+
+
+  }
+  ,
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }
+}
