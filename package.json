@@ -20,7 +20,7 @@
     "bluebird-extra": "^2.0.0",
     "body-parser": "^1.20.0",
     "bunyan": "^1.8.15",
-    "bunyan-debug-stream": "^3.0.2",
+    "bunyan-debug-stream": "^3.1.0",
     "compression": "^1.7.4",
     "cron": "^2.1.0",
     "dotenv": "^16.0.3",
