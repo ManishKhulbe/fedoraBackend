@@ -2,7 +2,7 @@ version: "3"
 
 services:
   server:
-    container_name: fedora-api
+    container_name: fedoraindia-api
     build:
       context: ./
       dockerfile: dockerfile
@@ -12,5 +12,15 @@ services:
       - 5001:5001
     volumes:
       - .:/app
-    env_file:
-      - ./.env
+    depends_on:
+        - redis
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+        - "6379:6379"
+
+networks:
+    dockernet:
+      external: true
