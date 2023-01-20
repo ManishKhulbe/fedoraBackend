@@ -4194,16 +4194,54 @@
           }
         ]
       }
+    },
+    "/user/editSequenceKeyInRedis": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "User ",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+          },
+          {
+            "name": "redisKeyName",
+            "in": "formData",
+            "description": " redisKeyName 1- sequenceKey 2- accountNumberSeqKey1to7",
+            "required": true,            
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "formData",
+            "description": "value in redis",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
     }
     
     
-
-
-
-
-
-
-
 
   }
   ,
