@@ -1,24 +1,57 @@
-# Python docker image on which this would be run
-    image: python:3.8
+stages:
+  - deploy
 
-#This command is run before actual stages start running
-    # before_script:
-    #   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    #   - npm install
+variables:
+  CODE_DEPLOY_APP_NAME_DEV: "fedora-dev"
+  CODE_DEPLOY_APP_NAME_PROD: "fedora-prod"
+  CODE_DEPLOY_DEPLOYMENT_GROUP_DEV: "fedora-dev-auto"
+  CODE_DEPLOY_DEPLOYMENT_GROUP_PROD: "fedora-prod-auto"
+  S3_BUCKET: "fedora-code-deploy"
+  S3_KEY_DEV: "fedora-code-deploy-dev.zip"
+  S3_KEY_PROD: "fedora-code-deploy-prod.zip"
+  
+code-deploy:dev:
+  stage: deploy
+  when: manual
+  allow_failure: false
+  environment:
+    name: dev
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - aws deploy create-deployment
+      --application-name ${CODE_DEPLOY_APP_NAME_DEV}
+      --deployment-config-name CodeDeployDefault.OneAtATime
+      --deployment-group-name ${CODE_DEPLOY_DEPLOYMENT_GROUP_DEV}
+      --description "My dev deployment ${CI_COMMIT_SHA}"
+      --s3-location bucket=${S3_BUCKET},bundleType=zip,key=${S3_KEY_DEV}
+    - echo "Deployment successful"
+  only:
+    refs:
+      - developer
+    variables:
+      - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_DEFAULT_REGION
 
-    stages:
-      - deploy
-
-    deploy:dev:
-      stage: deploy
-      script:
-        - bash deploy/deploy-dev.sh
-      only:
-        - developer
-
-    deploy:stag:
-      stage: deploy
-      script:
-        - bash deploy/deploy-stag.sh
-      only:
-        - staging
+code-deploy:prod:
+  stage: deploy
+  when: manual
+  allow_failure: false
+  environment:
+    name: prod
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - aws deploy create-deployment
+      --application-name ${CODE_DEPLOY_APP_NAME_PROD}
+      --deployment-config-name CodeDeployDefault.OneAtATime
+      --deployment-group-name ${CODE_DEPLOY_DEPLOYMENT_GROUP_PROD}
+      --description "My prod deployment ${CI_COMMIT_SHA}"
+      --s3-location bucket=${S3_BUCKET},bundleType=zip,key=${S3_KEY_PROD}
+    - echo "Deployment successful"
+  only:
+    refs:
+      - main
+    variables:
+      - $AWS_ACCESS_KEY_ID && $AWS_SECRET_ACCESS_KEY && $AWS_DEFAULT_REGION
