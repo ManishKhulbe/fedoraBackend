@@ -80,7 +80,7 @@ config.dbConfig(config.cfg, (error) => {
   });
   process.on("SIGTERM", () => {
     server.close(() => {
-      console.log("🚀 ~ file: server.js:77 ~ server.close ~ close");
+      console.log("🚀 ~ file: server.js:83 ~ server.close ~ close");
       mongoose.connection.close(false, () => {
         console.log("mongoose connection disconnected")
         process.exit(0);
