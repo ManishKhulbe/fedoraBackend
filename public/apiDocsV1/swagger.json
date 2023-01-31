@@ -1930,6 +1930,13 @@
             "type": "integer"
           },
           {
+            "name": "accountInterestRate",
+            "in": "formData",
+            "description": "rate of interest",
+            "required": true,
+            "type": "number"
+          },
+          {
             "name"  : "accountCreated",
             "in": "formData",
             "description": "accountCreated timstamp in miliseconds",
