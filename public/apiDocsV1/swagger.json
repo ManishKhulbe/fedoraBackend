@@ -1893,6 +1893,67 @@
         ]
       }
     },
+    "/customerAccount/editAccount": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Customer Account"],
+        "description": "editAccount",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token",
+            "required": true,
+             "type": "string"
+           },
+          {
+            "name": "customerAccountId",
+            "in": "query",
+            "description": "customerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountInterestRate",
+            "in": "query",
+            "description": "rate of interest",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name"  : "allotedAmount",
+            "in": "query",
+            "description": "allotedAmount",
+            "required": false,
+            "type": "integer"
+          },
+          
+          {
+            "name"  : "tenure",
+            "in": "query",
+            "description": "tenure",
+            "required": false,
+            "type": "integer"
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/customerAccount/create": {
       "post": {
         "deprecated": false,
