@@ -1518,6 +1518,51 @@
         ]
       }
     },
+    "/user/addSequence":{
+      "post": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "getAdminDashBoard",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "sequenceKeyName",
+            "in": "formData",
+            "description": "sequenceKeyName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sequenceKeyValue",
+            "in": "formData",
+            "description": "sequenceKeyValue",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
     "/user/addSharePrice": {
       "post": {
         "deprecated": false,
@@ -1539,6 +1584,58 @@
             "description": "currentValue",
             "required": true,
             "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/editSequence": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Dashboard"],
+        "description": "editSequence",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token of admin ",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "sequenceKeyName",
+            "in": "formData",
+             "description": "shareId",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "sequenceKeyValue",
+            "in": "formData",
+            "description": "currentValue",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "secretCode",
+            "in": "formData",
+            "description": "secretCode only admin should know",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -1919,7 +2016,6 @@
             "name": "accountInterestRate",
             "in": "query",
             "description": "rate of interest",
-            "required": true,
             "type": "number"
           },
           {
@@ -1929,7 +2025,13 @@
             "required": false,
             "type": "integer"
           },
-          
+          {
+            "name" :"rdAmount",
+            "in": "query",
+            "description": "rdAmount",
+            "required": false,
+            "type": "integer"
+          },
           {
             "name"  : "tenure",
             "in": "query",
@@ -2011,7 +2113,13 @@
             "required": false,
             "type": "integer"
           },
-          
+          {
+            "name":"rdAmount",
+            "in": "formData",
+            "description": "rdAmount",
+            "required": false,
+            "type": "integer"
+          },
           {
             "name"  : "tenure",
             "in": "formData",
