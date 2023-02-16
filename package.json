@@ -5,7 +5,8 @@
   "private": true,
   "author": "rahul singh",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "jest"
   },
   "description": "Nodejs project structure using expressjs,socket.io,mongoose",
   "dependencies": {
