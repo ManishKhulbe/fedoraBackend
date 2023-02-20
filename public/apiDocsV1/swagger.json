@@ -774,6 +774,12 @@
             "type": "integer"
           },
           {
+            "name" :"panCardNo" ,
+            "in" :"query",
+            "description" :"panCardNo",
+            "type" :"string"
+          },
+          {
             "name": "DOB",
             "in": "query",
          
