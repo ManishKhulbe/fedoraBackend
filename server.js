@@ -55,7 +55,7 @@ config.dbConfig(config.cfg, (error) => {
   // set server home directory
   app.locals.rootDir = __dirname;
 // const awsSms = require('./lib/service/aws_sms')
-// awsSms.sendSms("test message" , "918979820182")
+// awsSms.sendSms("test message from fedora" , "+918979820182")
   // config express
   config.expressConfig(app, config.cfg.environment);
   console.log("env : ", config.cfg.environment);
