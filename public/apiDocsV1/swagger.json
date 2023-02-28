@@ -1996,6 +1996,7 @@
         ]
       }
     },
+    
     "/customerAccount/editAccount": {
       "put": {
         "deprecated": false,
@@ -2190,6 +2191,100 @@
               3
             ],
             "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/transaction/getStatement": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Transaction"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+             "description": "access token JgqRFn4KsJiS2MUIV4pjLKv3hlbcrI30ezVtrqbka4Duq3dd2tmb8ECZleo1hypk",
+            "required": true,
+             "type": "string"
+           },
+           {
+            "name": "customerId",
+            "in": "query",
+            "description": " customerId 63f7544500840424cf8d023e ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "enter a valid year",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "enter a valid month",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "accountType",
+            "in": "query",
+            "description": "accountType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "pageNo",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "count",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "sortType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "sortField",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
