@@ -64,12 +64,7 @@ config.dbConfig(config.cfg, (error) => {
   // attach the routes to the app
   require("./lib/route")(app);
 
-  // const sslServer = https.createServer(config.cfg.ssl, app);
-  // const server = sslServer.listen(config.cfg.port, () => {
-  //     logger.info(
-  //         `Express server listening on ${config.cfg.ip}:${config.cfg.port}, in ${config.cfg.TAG} mode`
-  //       );
-  //     });
+  
   // start server
   const server = app.listen(config.cfg.port, () => {
     logger.info(
