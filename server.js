@@ -40,7 +40,7 @@ config.dbConfig(config.cfg, (error) => {
 
   //Reduce size of response
   const compression = require("compression");
-  // const {encryptDecryptMiddleware} = require("./lib/middleware/encryptDecrypt");
+  const {encryptDecryptMiddleware} = require("./lib/middleware/encryptDecrypt");
   const cors = require("cors");
   app.use(
     compression({
