@@ -53,7 +53,7 @@ config.dbConfig(config.cfg, (error) => {
   // set the view engine to ejs
   app.set("views", __dirname + "/views");
   app.set("view engine", "ejs");
-  app.use(encryptDecryptMiddleware)
+  // app.use(encryptDecryptMiddleware)
   // set server home directory
   app.locals.rootDir = __dirname;
 
