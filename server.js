@@ -40,7 +40,7 @@ config.dbConfig(config.cfg, (error) => {
 
   //Reduce size of response
   const compression = require("compression");
-  const {encryptDecryptMiddleware} = require("./lib/middleware/encryptDecrypt");
+  // const {encryptDecryptMiddleware} = require("./lib/middleware/encryptDecrypt");
   const cors = require("cors");
   app.use(
     compression({
@@ -53,7 +53,7 @@ config.dbConfig(config.cfg, (error) => {
   // set the view engine to ejs
   app.set("views", __dirname + "/views");
   app.set("view engine", "ejs");
-  app.use(encryptDecryptMiddleware)
+  // app.use(encryptDecryptMiddleware)
   // set server home directory
   app.locals.rootDir = __dirname;
 
